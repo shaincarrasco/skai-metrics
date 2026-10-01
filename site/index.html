@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>SkAI — Telescope Scheduler Metrics</title>
+<style>
+  /* primitive on purpose. terminal-log energy, no js, no nav, one column. */
+  body { max-width: 44em; margin: 3em auto; padding: 0 1em; line-height: 1.55;
+         font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px;
+         background: #fcfcfb; color: #111; }
+  h1 { font-size: 1.35em; letter-spacing: -0.01em; }
+  h2 { font-size: 1.05em; margin-top: 2.4em; }
+  h2::before { content: "## "; color: #999; }
+  h3 { font-size: 1em; }
+  h3::before { content: "### "; color: #bbb; }
+  hr { border: 0; border-top: 1px solid #ddd; margin: 2.5em 0; }
+  img { max-width: 100%; border: 1px solid #ddd; margin: 0.4em 0; }
+  table { border-collapse: collapse; font-size: 0.95em; }
+  th, td { border: 1px solid #ddd; padding: 5px 10px; text-align: left; }
+  th { background: #f4f4f0; font-weight: 600; }
+  td { font-variant-numeric: tabular-nums; }
+  a { color: #1c5cab; }
+  .cap { color: #666; font-size: 0.92em; }
+  tt { background: #f4f4f0; padding: 1px 4px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #141412; color: #ddd; }
+    th { background: #222; }
+    th, td, hr, img { border-color: #333; }
+    img { background: #fcfcfb; }  /* figures are light PNGs */
+    a { color: #6da7ec; }
+    tt { background: #222; }
+    .cap { color: #999; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Evaluation Metrics for AI Telescope Schedulers</h1>
+<p><i>Quantitative metrics that summarize the goodness of a telescope observation schedule, validated on real DES data, packaged for the group toolkit.</i></p>
+<p><b>Phase:</b> v0.1 — foundations: t_eff reconstructed, calibrated and validated; blur metric decomposed; per-night schedule scores on real DES nights<br>
+<b>Data:</b> 74,323 DES survey exposures
+(2013-08-31 to 2019-01-10), 615 nights scored.<br>
+<b>Last generated:</b> 2026-07-06T14:42:36+00:00</p>
+<hr>
+
+<h2>The metric</h2>
+<p><b>t_eff = &eta;&sup2; &middot; (FWHM_fid / FWHM)&sup2; &middot; (b_dark / b)</b></p>
+<p>Blur, clouds, and bright sky each discount an exposure's clock time.
+t_eff is the surviving fraction: a 90&nbsp;s exposure with t_eff = 0.4 detected
+faint objects as well as 36&nbsp;s taken in perfect conditions would have.
+A schedule's headline quality is how much of the wall-clock night it converted
+into these effective seconds.</p>
+
+<h2>How to read a night score (0&ndash;100)</h2>
+<p>score = 100 &middot; (0.50&middot;yield + 0.25&middot;quality + 0.25&middot;pointing).
+100 would need zero idle seconds, perfect sky, and everything at zenith
+&mdash; unattainable. Read it relative to DES (median 64):</p>
+<table>
+<tr><th>score</th><th>meaning (anchored on 615 real DES nights)</th></tr>
+<tr><td>75+</td><td>excellent (top ~16% of DES nights): mean t_eff at or above 1.0 — conditions better than fiducial; ~85 is the realistic full-night ceiling</td></tr>
+<tr><td>65-75</td><td>good working night: t_eff ~0.8, essentially every exposure usable</td></tr>
+<tr><td>55-65</td><td>ordinary: the DES median night scores 64</td></tr>
+<tr><td>40-55</td><td>rough: exposures mostly usable but lots of idle time</td></tr>
+<tr><td>&lt;40</td><td>wrecked (bottom ~10%): clouds ~0.6 mag, only ~1/4 of exposures worth keeping — mostly weather&#x27;s fault, not scheduling</td></tr>
+</table>
+
+<h2>Validation status</h2>
+<table>
+<tr><td>our t_eff vs DES pipeline (log-correlation)</td><td>0.9522</td></tr>
+<tr><td>median error</td><td>15%</td></tr>
+<tr><td>same, with naive paper constants</td><td>24%</td></tr>
+<tr><td>automated tests</td><td>4/4 passing</td></tr>
+<tr><td>median night score</td><td>64.1</td></tr>
+</table>
+
+<h2>Calibration (per band)</h2>
+<table>
+<tr><th>band</th><th>fiducial FWHM (&quot;)</th><th>sky exponent</th><th>keep threshold</th><th>median delivered</th></tr>
+<tr><td>g</td><td>1.119</td><td>0.589</td><td>0.2</td><td>1.14&quot;</td></tr>
+<tr><td>r</td><td>0.991</td><td>0.487</td><td>0.3</td><td>1.0&quot;</td></tr>
+<tr><td>i</td><td>0.932</td><td>0.254</td><td>0.3</td><td>0.93&quot;</td></tr>
+<tr><td>z</td><td>0.871</td><td>0.213</td><td>0.3</td><td>0.92&quot;</td></tr>
+<tr><td>Y</td><td>0.904</td><td>0.881</td><td>0.2</td><td>0.95&quot;</td></tr>
+</table>
+
+<h2>Main finding so far</h2>
+<p><b>The scheduler's own behavior hides the physics in the data.</b>
+Pooled, blur appears to <i>improve</i> away from zenith
+(fit exponent -0.234) because DES pointed at high
+airmass only in good seeing (correlation -0.361).
+Comparing within single nights recovers the physical law
+(exponent 0.229, theory +0.6).
+Consequence: schedulers cannot be judged from logged outcomes naively
+&mdash; conditions and decisions must be separated, which the metrics here do.</p>
+
+<h2>Best and worst nights</h2>
+<h3>Best five</h3>
+<table>
+<tr><th>night</th><th>score</th><th>exposures</th><th>mean t_eff</th><th>usable</th><th>median airmass</th></tr>
+<tr><td>2019-01-08</td><td>98.3</td><td>34</td><td>1.693</td><td>100%</td><td>1.055</td></tr>
+<tr><td>2015-09-01</td><td>97.8</td><td>27</td><td>1.532</td><td>100%</td><td>1.08</td></tr>
+<tr><td>2018-11-26</td><td>96.2</td><td>218</td><td>1.659</td><td>100%</td><td>1.15</td></tr>
+<tr><td>2018-02-21</td><td>96.0</td><td>96</td><td>1.43</td><td>99%</td><td>1.155</td></tr>
+<tr><td>2017-12-21</td><td>93.8</td><td>63</td><td>1.317</td><td>100%</td><td>1.28</td></tr>
+</table>
+
+<h3>Worst five</h3>
+<table>
+<tr><th>night</th><th>score</th><th>exposures</th><th>mean t_eff</th><th>usable</th><th>median airmass</th></tr>
+<tr><td>2018-09-11</td><td>19.2</td><td>24</td><td>0.021</td><td>0%</td><td>1.31</td></tr>
+<tr><td>2016-09-14</td><td>20.8</td><td>27</td><td>0.068</td><td>0%</td><td>1.19</td></tr>
+<tr><td>2014-01-17</td><td>21.9</td><td>26</td><td>0.161</td><td>0%</td><td>1.37</td></tr>
+<tr><td>2014-10-14</td><td>22.9</td><td>77</td><td>0.08</td><td>1%</td><td>1.19</td></tr>
+<tr><td>2015-09-15</td><td>23.3</td><td>57</td><td>0.054</td><td>0%</td><td>1.09</td></tr>
+</table>
+
+<hr>
+
+<h2>Figures</h2>
+<h3>Reconstructed vs pipeline t_eff</h3>
+<img src="../figures/teff_validation.png" alt="Reconstructed vs pipeline t_eff">
+<p class="cap">Our calibrated metric against DES&#x27;s own quality pipeline across 74,323 exposures — log-correlation 0.952.</p>
+<h3>The three factors of t_eff</h3>
+<img src="../figures/teff_terms.png" alt="The three factors of t_eff">
+<p class="cap">Blur, cloud and sky terms as multipliers on exposure time.</p>
+<h3>Fiducials rediscover physics</h3>
+<img src="../figures/fiducial_lambda.png" alt="Fiducials rediscover physics">
+<p class="cap">The per-band fiducial FWHM fit on data follows the atmospheric wavelength^-0.2 law.</p>
+<h3>Delivered seeing by band</h3>
+<img src="../figures/blur_by_band.png" alt="Delivered seeing by band">
+<p class="cap">Blur distributions in each DECam filter; redder bands are sharper.</p>
+<h3>Scheduler selection bias (Simpson&#x27;s paradox)</h3>
+<img src="../figures/blur_airmass.png" alt="Scheduler selection bias (Simpson&#x27;s paradox)">
+<p class="cap">Pooled, blur seems to improve with airmass — because the scheduler pointed low only in good seeing. Holding the night fixed recovers the physical X^0.6 trend. Evaluating schedulers from logged data is confounded by the logging policy.</p>
+<h3>Seeing across the footprint</h3>
+<img src="../figures/blur_skymap.png" alt="Seeing across the footprint">
+<p class="cap">Median delivered FWHM over the DES footprint.</p>
+<h3>Atmosphere vs scheduler</h3>
+<img src="../figures/blur_decomposition.png" alt="Atmosphere vs scheduler">
+<p class="cap">Zenith seeing (uncontrollable) vs delivered blur, and the t_eff fraction lost to pointing.</p>
+<h3>Seeing seasonality</h3>
+<img src="../figures/seeing_seasonality.png" alt="Seeing seasonality">
+<p class="cap">Monthly zenith seeing: Chilean summer delivers sharper images.</p>
+<h3>Every night, scored</h3>
+<img src="../figures/night_scores.png" alt="Every night, scored">
+<p class="cap">Composite schedule score for each DES night with a 60-day rolling median.</p>
+<h3>The efficiency plane</h3>
+<img src="../figures/efficiency_plane.png" alt="The efficiency plane">
+<p class="cap">Idle time vs poor conditions: two independent ways a night is lost.</p>
+<h3>Best and worst nights</h3>
+<img src="../figures/best_worst_nights.png" alt="Best and worst nights">
+<p class="cap">Exposure-by-exposure t_eff through the highest- and lowest-scoring nights.</p>
+<h3>Keep-or-retake thresholds</h3>
+<img src="../figures/teff_thresholds.png" alt="Keep-or-retake thresholds">
+<p class="cap">Fraction of exposures meeting DES survey thresholds per band.</p>
+<hr>
+<h2>Progress</h2>
+<ul>
+<li><tt>[x]</tt> t_eff physics identified from Terranova et al. + Neilsen et al. and mapped to the DES CSV columns <span class="cap">(2026-07-06)</span></li>
+<li><tt>[x]</tt> Empirical decomposition: blur x cloud core confirmed (log-corr 0.94), fiducials + sky term calibrated per band <span class="cap">(2026-07-06)</span></li>
+<li><tt>[x]</tt> skai_metrics package (data / teff / blur / schedule) + 4 validation tests passing on real data <span class="cap">(2026-07-06)</span></li>
+<li><tt>[x]</tt> Blur metric decomposed into atmosphere (uncontrollable) vs airmass (scheduler&#x27;s choice) <span class="cap">(2026-07-06)</span></li>
+<li><tt>[x]</tt> Finding: scheduler selection bias inverts the blur-airmass law in pooled data (Simpson&#x27;s paradox) — direct evidence that off-policy evaluation needs care <span class="cap">(2026-07-06)</span></li>
+<li><tt>[x]</tt> 616 real DES nights scored with the composite schedule metric <span class="cap">(2026-07-06)</span></li>
+<li><tt>[~]</tt> Notebooks 01-03, LaTeX write-up, progress site <span class="cap">(2026-07-06)</span></li>
+<li><tt>[ ]</tt> Review composite-score weights with mentors; apply metrics to the group&#x27;s prototype AI scheduler output</li>
+<li><tt>[ ]</tt> Integrate into the group&#x27;s shared software toolkit</li>
+</ul>
+<hr>
+<p class="cap">
+Regenerate: <tt>python3 scripts/make_figures.py &amp;&amp; python3 scripts/make_site.py</tt>
+&nbsp;|&nbsp; Tests: <tt>python3 tests/test_metrics.py</tt>
+&nbsp;|&nbsp; Fancier view: <a href="dashboard.html">dashboard.html</a><br>
+References: Neilsen et al. 2019 (DES observing strategy, defines t_eff);
+Terranova et al. 2023, arXiv:2311.18094 (t_eff as offline-RL reward);
+Kumar et al. 2020 (Conservative Q-Learning).
+</p>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Evaluation Metrics for AI Telescope Schedulers — Progress</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="topnav" aria-label="Sections">
+  <div class="nav-inner">
+    <a class="brand" href="#top">skai-metrics</a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#metric">The metric</a>
+      <a href="#validation">Validation</a>
+      <a href="#blur">Blur</a>
+      <a href="#schedule">Schedule scores</a>
+      <a href="#progress">Progress</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- 1. Hero -->
+  <header class="hero" id="overview">
+    <p class="kicker">SkAI Institute &middot; DES data &middot; Shain Carrasco</p>
+    <h1 id="project-title">Evaluation Metrics and Rewards for AI-Based Telescope Schedulers</h1>
+    <p class="goal" id="project-goal"></p>
+    <p class="phase"><span class="phase-chip" id="project-phase"></span></p>
+    <div class="stat-grid" id="stat-grid"></div>
+    <p class="dataset-line" id="dataset-line"></p>
+  </header>
+
+  <!-- 2. The metric -->
+  <section id="metric">
+    <h2>The metric</h2>
+    <div class="card equation-card">
+      <div class="equation" role="img"
+           aria-label="t effective equals eta squared, times the square of fiducial FWHM over delivered FWHM, times dark-sky brightness over sky brightness">
+        <span class="eq-var">t<sub>eff</sub></span>
+        <span class="eq-op">=</span>
+        <span class="eq-var">&eta;<sup>2</sup></span>
+        <span class="eq-op">&middot;</span>
+        <span class="frac"><span class="num">FWHM<sub>fid</sub></span><span class="den">FWHM</span></span><sup class="frac-exp">2</sup>
+        <span class="eq-op">&middot;</span>
+        <span class="frac"><span class="num">b<sub>dark</sub></span><span class="den">b</span></span>
+      </div>
+      <p class="eq-legend">
+        <span><b>&eta;</b> cloud transmission</span>
+        <span><b>FWHM</b> delivered blur vs the band's fiducial</span>
+        <span><b>b</b> sky brightness vs dark sky</span>
+      </p>
+    </div>
+    <p class="prose">
+      Effective exposure time discounts an exposure's clock time by everything the atmosphere
+      and the sky take away: <b>blur</b> spreads a star's light over more pixels, <b>clouds</b>
+      absorb photons before they arrive, and a <b>bright sky</b> buries faint sources in noise.
+      An exposure taken in poor conditions is worth only a fraction of its wall-clock seconds;
+      one taken in exceptional conditions can be worth more than its face value. A schedule's
+      goodness, then, is simply how much of the available night it converts into effective
+      science seconds &mdash; which makes t<sub>eff</sub> a natural reward signal for an
+      AI scheduler.
+    </p>
+  </section>
+
+  <!-- 3. Validation -->
+  <section id="validation">
+    <h2>Validation</h2>
+    <p class="prose" id="validation-lede"></p>
+    <div class="fig-grid" id="figs-validation"></div>
+    <h3>Calibration (per band)</h3>
+    <div class="table-wrap">
+      <table id="calibration-table">
+        <caption class="sr-only">Calibrated per-band constants</caption>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4. Blur metric -->
+  <section id="blur">
+    <h2>Blur metric</h2>
+    <div class="callout" id="blur-callout">
+      <p class="callout-title">Headline finding &mdash; scheduler selection bias inverts the blur&ndash;airmass law (Simpson's paradox)</p>
+      <p class="callout-body" id="blur-callout-body"></p>
+      <div class="exponent-row" id="exponent-row"></div>
+    </div>
+    <div class="fig-grid" id="figs-blur"></div>
+  </section>
+
+  <!-- 5. Schedule scores -->
+  <section id="schedule">
+    <h2>Schedule scores</h2>
+    <p class="prose" id="schedule-lede"></p>
+
+    <div class="card spark-card">
+      <div class="spark-head">
+        <h3 class="spark-title">Nightly score, every scored night</h3>
+        <span class="spark-sub" id="spark-sub"></span>
+      </div>
+      <div class="spark-wrap" id="spark-wrap"></div>
+      <div class="spark-tip" id="spark-tip" hidden></div>
+    </div>
+
+    <div class="nights-cols">
+      <div>
+        <h3 class="nights-h good-h"><span class="dot dot-good" aria-hidden="true"></span>Best 5 nights</h3>
+        <div class="table-wrap"><table id="best-table"></table></div>
+      </div>
+      <div>
+        <h3 class="nights-h crit-h"><span class="dot dot-crit" aria-hidden="true"></span>Worst 5 nights</h3>
+        <div class="table-wrap"><table id="worst-table"></table></div>
+      </div>
+    </div>
+
+    <div class="fig-grid" id="figs-schedule"></div>
+  </section>
+
+  <!-- 6. Progress -->
+  <section id="progress">
+    <h2>Progress</h2>
+    <ol class="timeline" id="timeline"></ol>
+  </section>
+
+</main>
+
+<!-- 7. Footer -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-col">
+      <h4>Regenerate</h4>
+      <p>Figures, <code>summary.json</code> and <code>summary.js</code> are produced by</p>
+      <pre><code>python3 scripts/make_figures.py</code></pre>
+      <p>Run the validation suite with</p>
+      <pre><code>python3 tests/test_metrics.py</code></pre>
+    </div>
+    <div class="foot-col">
+      <h4>Key references</h4>
+      <ul>
+        <li>Neilsen&nbsp;et&nbsp;al.&nbsp;2019 &mdash; DES observing strategy and effective exposure time</li>
+        <li>Terranova&nbsp;et&nbsp;al.&nbsp;2023 &mdash; reinforcement learning for telescope scheduling (arXiv:2311.18094)</li>
+      </ul>
+      <p class="foot-meta" id="generated-line"></p>
+    </div>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lightbox-close" id="lightbox-close" aria-label="Close full-size figure">&times;&nbsp;Close (Esc)</button>
+  <figure>
+    <img id="lightbox-img" src="" alt="">
+    <figcaption id="lightbox-cap"></figcaption>
+  </figure>
+</div>
+
+<script src="data/summary.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

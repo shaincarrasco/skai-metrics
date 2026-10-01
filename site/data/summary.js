@@ -1,0 +1,3377 @@
+window.SUMMARY = {
+  "generated": "2026-07-06T14:42:36+00:00",
+  "project": {
+    "title": "Evaluation Metrics and Rewards for AI-Based Telescope Schedulers",
+    "goal": "Quantitative metrics that summarize the goodness of a telescope observation schedule, validated on real DES data, packaged for the group toolkit.",
+    "phase": "v0.1 \u2014 foundations: t_eff reconstructed, calibrated and validated; blur metric decomposed; per-night schedule scores on real DES nights"
+  },
+  "dataset": {
+    "source": "des-exposures.csv",
+    "n_rows_raw": 105889,
+    "n_survey_90s_clean": 74323,
+    "n_nights_scored": 615,
+    "date_range": [
+      "2013-08-31",
+      "2019-01-10"
+    ],
+    "exposures_by_band": {
+      "g": 20128,
+      "r": 18032,
+      "i": 16971,
+      "z": 15629,
+      "Y": 3563
+    }
+  },
+  "validation": {
+    "logcorr_calibrated": 0.9522,
+    "logcorr_blur_cloud_only": 0.9329,
+    "median_abs_err_calibrated": 0.1475,
+    "median_abs_err_naive_paper": 0.2393,
+    "tests_passed": 4,
+    "tests_total": 4
+  },
+  "calibration": {
+    "fiducial_fwhm_arcsec": {
+      "g": 1.119,
+      "r": 0.991,
+      "i": 0.932,
+      "z": 0.871,
+      "Y": 0.904
+    },
+    "sky_alpha": {
+      "g": 0.589,
+      "r": 0.487,
+      "i": 0.254,
+      "z": 0.213,
+      "Y": 0.881
+    },
+    "teff_thresholds": {
+      "g": 0.2,
+      "r": 0.3,
+      "i": 0.3,
+      "z": 0.3,
+      "Y": 0.2
+    },
+    "airmass_exponent_theory": 0.6,
+    "airmass_exponent_fit_pooled": -0.234,
+    "airmass_exponent_fit_within_night": 0.229,
+    "zenith_seeing_airmass_corr": -0.361
+  },
+  "blur": {
+    "median_fwhm_by_band": {
+      "g": 1.14,
+      "r": 1.0,
+      "i": 0.93,
+      "z": 0.92,
+      "Y": 0.95
+    },
+    "median_delivered_i_equiv": 0.97,
+    "median_zenith_i": 0.869,
+    "median_teff_lost_to_pointing_pct": 19.7
+  },
+  "nights": {
+    "median_score": 64.1,
+    "best": [
+      {
+        "night": "2019-01-08",
+        "score": 98.3,
+        "n_exposures": 34,
+        "mean_teff": 1.693,
+        "open_shutter_efficiency": 0.703,
+        "effective_efficiency": 1.19,
+        "pass_fraction": 1.0,
+        "median_airmass": 1.055
+      },
+      {
+        "night": "2015-09-01",
+        "score": 97.8,
+        "n_exposures": 27,
+        "mean_teff": 1.532,
+        "open_shutter_efficiency": 0.701,
+        "effective_efficiency": 1.074,
+        "pass_fraction": 1.0,
+        "median_airmass": 1.08
+      },
+      {
+        "night": "2018-11-26",
+        "score": 96.2,
+        "n_exposures": 218,
+        "mean_teff": 1.659,
+        "open_shutter_efficiency": 0.68,
+        "effective_efficiency": 1.128,
+        "pass_fraction": 1.0,
+        "median_airmass": 1.15
+      },
+      {
+        "night": "2018-02-21",
+        "score": 96.0,
+        "n_exposures": 96,
+        "mean_teff": 1.43,
+        "open_shutter_efficiency": 0.737,
+        "effective_efficiency": 1.054,
+        "pass_fraction": 0.99,
+        "median_airmass": 1.155
+      },
+      {
+        "night": "2017-12-21",
+        "score": 93.8,
+        "n_exposures": 63,
+        "mean_teff": 1.317,
+        "open_shutter_efficiency": 0.753,
+        "effective_efficiency": 0.992,
+        "pass_fraction": 1.0,
+        "median_airmass": 1.28
+      }
+    ],
+    "worst": [
+      {
+        "night": "2018-09-11",
+        "score": 19.2,
+        "n_exposures": 24,
+        "mean_teff": 0.021,
+        "open_shutter_efficiency": 0.497,
+        "effective_efficiency": 0.01,
+        "pass_fraction": 0.0,
+        "median_airmass": 1.31
+      },
+      {
+        "night": "2016-09-14",
+        "score": 20.8,
+        "n_exposures": 27,
+        "mean_teff": 0.068,
+        "open_shutter_efficiency": 0.195,
+        "effective_efficiency": 0.013,
+        "pass_fraction": 0.0,
+        "median_airmass": 1.19
+      },
+      {
+        "night": "2014-01-17",
+        "score": 21.9,
+        "n_exposures": 26,
+        "mean_teff": 0.161,
+        "open_shutter_efficiency": 0.552,
+        "effective_efficiency": 0.089,
+        "pass_fraction": 0.0,
+        "median_airmass": 1.37
+      },
+      {
+        "night": "2014-10-14",
+        "score": 22.9,
+        "n_exposures": 77,
+        "mean_teff": 0.08,
+        "open_shutter_efficiency": 0.511,
+        "effective_efficiency": 0.041,
+        "pass_fraction": 0.013,
+        "median_airmass": 1.19
+      },
+      {
+        "night": "2015-09-15",
+        "score": 23.3,
+        "n_exposures": 57,
+        "mean_teff": 0.054,
+        "open_shutter_efficiency": 0.349,
+        "effective_efficiency": 0.019,
+        "pass_fraction": 0.0,
+        "median_airmass": 1.09
+      }
+    ],
+    "timeline": [
+      {
+        "night": "2013-08-31",
+        "score": 67.5,
+        "effective_efficiency": 0.434
+      },
+      {
+        "night": "2013-09-01",
+        "score": 47.4,
+        "effective_efficiency": 0.135
+      },
+      {
+        "night": "2013-09-02",
+        "score": 65.4,
+        "effective_efficiency": 0.377
+      },
+      {
+        "night": "2013-09-03",
+        "score": 43.0,
+        "effective_efficiency": 0.218
+      },
+      {
+        "night": "2013-09-04",
+        "score": 47.3,
+        "effective_efficiency": 0.205
+      },
+      {
+        "night": "2013-09-05",
+        "score": 67.3,
+        "effective_efficiency": 0.484
+      },
+      {
+        "night": "2013-09-07",
+        "score": 58.1,
+        "effective_efficiency": 0.244
+      },
+      {
+        "night": "2013-09-08",
+        "score": 46.8,
+        "effective_efficiency": 0.154
+      },
+      {
+        "night": "2013-09-09",
+        "score": 60.2,
+        "effective_efficiency": 0.328
+      },
+      {
+        "night": "2013-09-10",
+        "score": 57.4,
+        "effective_efficiency": 0.346
+      },
+      {
+        "night": "2013-09-11",
+        "score": 35.8,
+        "effective_efficiency": 0.042
+      },
+      {
+        "night": "2013-09-12",
+        "score": 72.0,
+        "effective_efficiency": 0.521
+      },
+      {
+        "night": "2013-09-14",
+        "score": 41.2,
+        "effective_efficiency": 0.145
+      },
+      {
+        "night": "2013-09-15",
+        "score": 26.3,
+        "effective_efficiency": 0.103
+      },
+      {
+        "night": "2013-09-22",
+        "score": 57.3,
+        "effective_efficiency": 0.221
+      },
+      {
+        "night": "2013-09-23",
+        "score": 57.0,
+        "effective_efficiency": 0.189
+      },
+      {
+        "night": "2013-09-27",
+        "score": 49.1,
+        "effective_efficiency": 0.135
+      },
+      {
+        "night": "2013-09-28",
+        "score": 63.3,
+        "effective_efficiency": 0.399
+      },
+      {
+        "night": "2013-09-29",
+        "score": 62.0,
+        "effective_efficiency": 0.407
+      },
+      {
+        "night": "2013-10-01",
+        "score": 42.8,
+        "effective_efficiency": 0.123
+      },
+      {
+        "night": "2013-10-02",
+        "score": 54.2,
+        "effective_efficiency": 0.215
+      },
+      {
+        "night": "2013-10-03",
+        "score": 72.4,
+        "effective_efficiency": 0.514
+      },
+      {
+        "night": "2013-10-09",
+        "score": 69.7,
+        "effective_efficiency": 0.474
+      },
+      {
+        "night": "2013-10-10",
+        "score": 71.8,
+        "effective_efficiency": 0.533
+      },
+      {
+        "night": "2013-10-11",
+        "score": 72.2,
+        "effective_efficiency": 0.548
+      },
+      {
+        "night": "2013-10-12",
+        "score": 69.5,
+        "effective_efficiency": 0.503
+      },
+      {
+        "night": "2013-10-13",
+        "score": 53.4,
+        "effective_efficiency": 0.145
+      },
+      {
+        "night": "2013-10-14",
+        "score": 58.0,
+        "effective_efficiency": 0.327
+      },
+      {
+        "night": "2013-10-25",
+        "score": 32.9,
+        "effective_efficiency": 0.049
+      },
+      {
+        "night": "2013-10-26",
+        "score": 50.0,
+        "effective_efficiency": 0.145
+      },
+      {
+        "night": "2013-10-27",
+        "score": 62.9,
+        "effective_efficiency": 0.336
+      },
+      {
+        "night": "2013-10-28",
+        "score": 44.0,
+        "effective_efficiency": 0.128
+      },
+      {
+        "night": "2013-10-29",
+        "score": 44.8,
+        "effective_efficiency": 0.051
+      },
+      {
+        "night": "2013-10-30",
+        "score": 30.8,
+        "effective_efficiency": 0.078
+      },
+      {
+        "night": "2013-11-05",
+        "score": 49.1,
+        "effective_efficiency": 0.069
+      },
+      {
+        "night": "2013-11-06",
+        "score": 63.6,
+        "effective_efficiency": 0.377
+      },
+      {
+        "night": "2013-11-07",
+        "score": 64.7,
+        "effective_efficiency": 0.424
+      },
+      {
+        "night": "2013-11-08",
+        "score": 57.5,
+        "effective_efficiency": 0.246
+      },
+      {
+        "night": "2013-11-10",
+        "score": 53.2,
+        "effective_efficiency": 0.184
+      },
+      {
+        "night": "2013-11-12",
+        "score": 68.9,
+        "effective_efficiency": 0.537
+      },
+      {
+        "night": "2013-11-13",
+        "score": 61.2,
+        "effective_efficiency": 0.334
+      },
+      {
+        "night": "2013-11-20",
+        "score": 48.4,
+        "effective_efficiency": 0.093
+      },
+      {
+        "night": "2013-11-21",
+        "score": 61.6,
+        "effective_efficiency": 0.345
+      },
+      {
+        "night": "2013-11-22",
+        "score": 62.7,
+        "effective_efficiency": 0.399
+      },
+      {
+        "night": "2013-11-30",
+        "score": 73.7,
+        "effective_efficiency": 0.631
+      },
+      {
+        "night": "2013-12-01",
+        "score": 65.6,
+        "effective_efficiency": 0.405
+      },
+      {
+        "night": "2013-12-02",
+        "score": 52.4,
+        "effective_efficiency": 0.21
+      },
+      {
+        "night": "2013-12-03",
+        "score": 35.8,
+        "effective_efficiency": 0.123
+      },
+      {
+        "night": "2013-12-04",
+        "score": 42.0,
+        "effective_efficiency": 0.18
+      },
+      {
+        "night": "2013-12-05",
+        "score": 66.4,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2013-12-06",
+        "score": 65.6,
+        "effective_efficiency": 0.468
+      },
+      {
+        "night": "2013-12-08",
+        "score": 66.5,
+        "effective_efficiency": 0.409
+      },
+      {
+        "night": "2013-12-09",
+        "score": 74.1,
+        "effective_efficiency": 0.638
+      },
+      {
+        "night": "2013-12-10",
+        "score": 59.6,
+        "effective_efficiency": 0.339
+      },
+      {
+        "night": "2013-12-11",
+        "score": 74.3,
+        "effective_efficiency": 0.642
+      },
+      {
+        "night": "2013-12-12",
+        "score": 54.1,
+        "effective_efficiency": 0.198
+      },
+      {
+        "night": "2013-12-13",
+        "score": 60.7,
+        "effective_efficiency": 0.346
+      },
+      {
+        "night": "2013-12-19",
+        "score": 52.2,
+        "effective_efficiency": 0.184
+      },
+      {
+        "night": "2013-12-20",
+        "score": 45.7,
+        "effective_efficiency": 0.067
+      },
+      {
+        "night": "2013-12-22",
+        "score": 49.3,
+        "effective_efficiency": 0.174
+      },
+      {
+        "night": "2013-12-23",
+        "score": 66.2,
+        "effective_efficiency": 0.479
+      },
+      {
+        "night": "2013-12-26",
+        "score": 47.4,
+        "effective_efficiency": 0.166
+      },
+      {
+        "night": "2013-12-27",
+        "score": 70.6,
+        "effective_efficiency": 0.561
+      },
+      {
+        "night": "2013-12-28",
+        "score": 73.3,
+        "effective_efficiency": 0.623
+      },
+      {
+        "night": "2013-12-29",
+        "score": 76.6,
+        "effective_efficiency": 0.692
+      },
+      {
+        "night": "2013-12-30",
+        "score": 69.4,
+        "effective_efficiency": 0.544
+      },
+      {
+        "night": "2013-12-31",
+        "score": 76.6,
+        "effective_efficiency": 0.667
+      },
+      {
+        "night": "2014-01-01",
+        "score": 71.1,
+        "effective_efficiency": 0.57
+      },
+      {
+        "night": "2014-01-02",
+        "score": 51.8,
+        "effective_efficiency": 0.217
+      },
+      {
+        "night": "2014-01-03",
+        "score": 61.1,
+        "effective_efficiency": 0.337
+      },
+      {
+        "night": "2014-01-04",
+        "score": 72.5,
+        "effective_efficiency": 0.595
+      },
+      {
+        "night": "2014-01-17",
+        "score": 21.9,
+        "effective_efficiency": 0.089
+      },
+      {
+        "night": "2014-01-19",
+        "score": 58.6,
+        "effective_efficiency": 0.286
+      },
+      {
+        "night": "2014-01-20",
+        "score": 62.5,
+        "effective_efficiency": 0.387
+      },
+      {
+        "night": "2014-01-21",
+        "score": 67.5,
+        "effective_efficiency": 0.507
+      },
+      {
+        "night": "2014-01-22",
+        "score": 82.6,
+        "effective_efficiency": 0.789
+      },
+      {
+        "night": "2014-01-23",
+        "score": 58.2,
+        "effective_efficiency": 0.339
+      },
+      {
+        "night": "2014-01-25",
+        "score": 70.5,
+        "effective_efficiency": 0.501
+      },
+      {
+        "night": "2014-01-26",
+        "score": 44.7,
+        "effective_efficiency": 0.211
+      },
+      {
+        "night": "2014-01-27",
+        "score": 65.8,
+        "effective_efficiency": 0.399
+      },
+      {
+        "night": "2014-01-28",
+        "score": 67.7,
+        "effective_efficiency": 0.443
+      },
+      {
+        "night": "2014-01-29",
+        "score": 65.2,
+        "effective_efficiency": 0.375
+      },
+      {
+        "night": "2014-01-30",
+        "score": 58.0,
+        "effective_efficiency": 0.266
+      },
+      {
+        "night": "2014-02-01",
+        "score": 90.6,
+        "effective_efficiency": 0.963
+      },
+      {
+        "night": "2014-02-02",
+        "score": 74.7,
+        "effective_efficiency": 0.641
+      },
+      {
+        "night": "2014-02-03",
+        "score": 83.4,
+        "effective_efficiency": 0.803
+      },
+      {
+        "night": "2014-02-04",
+        "score": 71.7,
+        "effective_efficiency": 0.561
+      },
+      {
+        "night": "2014-02-05",
+        "score": 63.0,
+        "effective_efficiency": 0.369
+      },
+      {
+        "night": "2014-02-06",
+        "score": 52.5,
+        "effective_efficiency": 0.206
+      },
+      {
+        "night": "2014-02-09",
+        "score": 67.3,
+        "effective_efficiency": 0.503
+      },
+      {
+        "night": "2014-08-07",
+        "score": 56.5,
+        "effective_efficiency": 0.159
+      },
+      {
+        "night": "2014-08-15",
+        "score": 60.2,
+        "effective_efficiency": 0.272
+      },
+      {
+        "night": "2014-08-16",
+        "score": 62.9,
+        "effective_efficiency": 0.32
+      },
+      {
+        "night": "2014-08-17",
+        "score": 66.4,
+        "effective_efficiency": 0.383
+      },
+      {
+        "night": "2014-08-18",
+        "score": 83.7,
+        "effective_efficiency": 0.729
+      },
+      {
+        "night": "2014-08-19",
+        "score": 83.8,
+        "effective_efficiency": 0.75
+      },
+      {
+        "night": "2014-08-20",
+        "score": 49.8,
+        "effective_efficiency": 0.075
+      },
+      {
+        "night": "2014-08-21",
+        "score": 76.5,
+        "effective_efficiency": 0.574
+      },
+      {
+        "night": "2014-08-22",
+        "score": 28.8,
+        "effective_efficiency": 0.085
+      },
+      {
+        "night": "2014-08-24",
+        "score": 31.3,
+        "effective_efficiency": 0.073
+      },
+      {
+        "night": "2014-08-28",
+        "score": 32.1,
+        "effective_efficiency": 0.067
+      },
+      {
+        "night": "2014-09-02",
+        "score": 37.3,
+        "effective_efficiency": 0.074
+      },
+      {
+        "night": "2014-09-03",
+        "score": 58.8,
+        "effective_efficiency": 0.245
+      },
+      {
+        "night": "2014-09-05",
+        "score": 38.8,
+        "effective_efficiency": 0.111
+      },
+      {
+        "night": "2014-09-11",
+        "score": 61.5,
+        "effective_efficiency": 0.29
+      },
+      {
+        "night": "2014-09-14",
+        "score": 49.0,
+        "effective_efficiency": 0.16
+      },
+      {
+        "night": "2014-09-15",
+        "score": 42.6,
+        "effective_efficiency": 0.152
+      },
+      {
+        "night": "2014-09-19",
+        "score": 68.1,
+        "effective_efficiency": 0.402
+      },
+      {
+        "night": "2014-09-22",
+        "score": 57.8,
+        "effective_efficiency": 0.255
+      },
+      {
+        "night": "2014-09-23",
+        "score": 68.6,
+        "effective_efficiency": 0.412
+      },
+      {
+        "night": "2014-09-24",
+        "score": 61.9,
+        "effective_efficiency": 0.356
+      },
+      {
+        "night": "2014-09-25",
+        "score": 69.2,
+        "effective_efficiency": 0.464
+      },
+      {
+        "night": "2014-09-26",
+        "score": 61.0,
+        "effective_efficiency": 0.309
+      },
+      {
+        "night": "2014-09-29",
+        "score": 75.1,
+        "effective_efficiency": 0.55
+      },
+      {
+        "night": "2014-09-30",
+        "score": 55.1,
+        "effective_efficiency": 0.182
+      },
+      {
+        "night": "2014-10-01",
+        "score": 60.2,
+        "effective_efficiency": 0.313
+      },
+      {
+        "night": "2014-10-02",
+        "score": 47.0,
+        "effective_efficiency": 0.141
+      },
+      {
+        "night": "2014-10-12",
+        "score": 49.8,
+        "effective_efficiency": 0.099
+      },
+      {
+        "night": "2014-10-13",
+        "score": 44.6,
+        "effective_efficiency": 0.201
+      },
+      {
+        "night": "2014-10-14",
+        "score": 22.9,
+        "effective_efficiency": 0.041
+      },
+      {
+        "night": "2014-10-15",
+        "score": 23.5,
+        "effective_efficiency": 0.024
+      },
+      {
+        "night": "2014-10-18",
+        "score": 50.1,
+        "effective_efficiency": 0.278
+      },
+      {
+        "night": "2014-10-19",
+        "score": 63.4,
+        "effective_efficiency": 0.361
+      },
+      {
+        "night": "2014-10-20",
+        "score": 65.5,
+        "effective_efficiency": 0.435
+      },
+      {
+        "night": "2014-10-21",
+        "score": 68.5,
+        "effective_efficiency": 0.497
+      },
+      {
+        "night": "2014-10-22",
+        "score": 59.0,
+        "effective_efficiency": 0.345
+      },
+      {
+        "night": "2014-10-25",
+        "score": 52.8,
+        "effective_efficiency": 0.115
+      },
+      {
+        "night": "2014-10-26",
+        "score": 36.5,
+        "effective_efficiency": 0.128
+      },
+      {
+        "night": "2014-10-27",
+        "score": 60.1,
+        "effective_efficiency": 0.365
+      },
+      {
+        "night": "2014-10-28",
+        "score": 61.7,
+        "effective_efficiency": 0.37
+      },
+      {
+        "night": "2014-10-29",
+        "score": 54.1,
+        "effective_efficiency": 0.159
+      },
+      {
+        "night": "2014-10-30",
+        "score": 54.0,
+        "effective_efficiency": 0.219
+      },
+      {
+        "night": "2014-11-01",
+        "score": 31.1,
+        "effective_efficiency": 0.096
+      },
+      {
+        "night": "2014-11-02",
+        "score": 55.7,
+        "effective_efficiency": 0.285
+      },
+      {
+        "night": "2014-11-03",
+        "score": 55.8,
+        "effective_efficiency": 0.172
+      },
+      {
+        "night": "2014-11-12",
+        "score": 61.3,
+        "effective_efficiency": 0.357
+      },
+      {
+        "night": "2014-11-13",
+        "score": 61.3,
+        "effective_efficiency": 0.358
+      },
+      {
+        "night": "2014-11-14",
+        "score": 66.6,
+        "effective_efficiency": 0.461
+      },
+      {
+        "night": "2014-11-15",
+        "score": 61.1,
+        "effective_efficiency": 0.394
+      },
+      {
+        "night": "2014-11-16",
+        "score": 66.4,
+        "effective_efficiency": 0.449
+      },
+      {
+        "night": "2014-11-17",
+        "score": 68.4,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2014-11-19",
+        "score": 23.4,
+        "effective_efficiency": 0.016
+      },
+      {
+        "night": "2014-11-20",
+        "score": 66.5,
+        "effective_efficiency": 0.432
+      },
+      {
+        "night": "2014-11-24",
+        "score": 25.9,
+        "effective_efficiency": 0.061
+      },
+      {
+        "night": "2014-11-25",
+        "score": 66.1,
+        "effective_efficiency": 0.435
+      },
+      {
+        "night": "2014-11-26",
+        "score": 68.5,
+        "effective_efficiency": 0.48
+      },
+      {
+        "night": "2014-11-27",
+        "score": 42.2,
+        "effective_efficiency": 0.194
+      },
+      {
+        "night": "2014-11-29",
+        "score": 25.1,
+        "effective_efficiency": 0.118
+      },
+      {
+        "night": "2014-11-30",
+        "score": 62.5,
+        "effective_efficiency": 0.357
+      },
+      {
+        "night": "2014-12-05",
+        "score": 55.9,
+        "effective_efficiency": 0.201
+      },
+      {
+        "night": "2014-12-10",
+        "score": 66.7,
+        "effective_efficiency": 0.432
+      },
+      {
+        "night": "2014-12-11",
+        "score": 69.6,
+        "effective_efficiency": 0.547
+      },
+      {
+        "night": "2014-12-12",
+        "score": 64.5,
+        "effective_efficiency": 0.446
+      },
+      {
+        "night": "2014-12-13",
+        "score": 54.1,
+        "effective_efficiency": 0.19
+      },
+      {
+        "night": "2014-12-14",
+        "score": 65.6,
+        "effective_efficiency": 0.442
+      },
+      {
+        "night": "2014-12-15",
+        "score": 71.8,
+        "effective_efficiency": 0.572
+      },
+      {
+        "night": "2014-12-16",
+        "score": 71.1,
+        "effective_efficiency": 0.564
+      },
+      {
+        "night": "2014-12-19",
+        "score": 76.3,
+        "effective_efficiency": 0.683
+      },
+      {
+        "night": "2014-12-20",
+        "score": 45.3,
+        "effective_efficiency": 0.114
+      },
+      {
+        "night": "2014-12-21",
+        "score": 59.5,
+        "effective_efficiency": 0.326
+      },
+      {
+        "night": "2014-12-22",
+        "score": 68.9,
+        "effective_efficiency": 0.471
+      },
+      {
+        "night": "2014-12-23",
+        "score": 76.2,
+        "effective_efficiency": 0.666
+      },
+      {
+        "night": "2014-12-24",
+        "score": 68.3,
+        "effective_efficiency": 0.504
+      },
+      {
+        "night": "2014-12-25",
+        "score": 64.9,
+        "effective_efficiency": 0.427
+      },
+      {
+        "night": "2014-12-26",
+        "score": 59.9,
+        "effective_efficiency": 0.324
+      },
+      {
+        "night": "2014-12-28",
+        "score": 52.3,
+        "effective_efficiency": 0.183
+      },
+      {
+        "night": "2014-12-29",
+        "score": 65.7,
+        "effective_efficiency": 0.435
+      },
+      {
+        "night": "2014-12-30",
+        "score": 57.8,
+        "effective_efficiency": 0.29
+      },
+      {
+        "night": "2015-01-06",
+        "score": 55.4,
+        "effective_efficiency": 0.243
+      },
+      {
+        "night": "2015-01-07",
+        "score": 62.4,
+        "effective_efficiency": 0.353
+      },
+      {
+        "night": "2015-01-08",
+        "score": 59.1,
+        "effective_efficiency": 0.313
+      },
+      {
+        "night": "2015-01-09",
+        "score": 66.9,
+        "effective_efficiency": 0.464
+      },
+      {
+        "night": "2015-01-11",
+        "score": 67.2,
+        "effective_efficiency": 0.473
+      },
+      {
+        "night": "2015-01-12",
+        "score": 77.5,
+        "effective_efficiency": 0.706
+      },
+      {
+        "night": "2015-01-13",
+        "score": 74.3,
+        "effective_efficiency": 0.638
+      },
+      {
+        "night": "2015-01-14",
+        "score": 65.0,
+        "effective_efficiency": 0.455
+      },
+      {
+        "night": "2015-01-15",
+        "score": 70.6,
+        "effective_efficiency": 0.564
+      },
+      {
+        "night": "2015-01-16",
+        "score": 63.0,
+        "effective_efficiency": 0.413
+      },
+      {
+        "night": "2015-01-18",
+        "score": 70.8,
+        "effective_efficiency": 0.568
+      },
+      {
+        "night": "2015-01-19",
+        "score": 66.3,
+        "effective_efficiency": 0.447
+      },
+      {
+        "night": "2015-01-20",
+        "score": 66.8,
+        "effective_efficiency": 0.495
+      },
+      {
+        "night": "2015-01-21",
+        "score": 47.9,
+        "effective_efficiency": 0.104
+      },
+      {
+        "night": "2015-01-22",
+        "score": 62.2,
+        "effective_efficiency": 0.357
+      },
+      {
+        "night": "2015-01-23",
+        "score": 82.1,
+        "effective_efficiency": 0.784
+      },
+      {
+        "night": "2015-01-24",
+        "score": 62.2,
+        "effective_efficiency": 0.408
+      },
+      {
+        "night": "2015-01-25",
+        "score": 79.6,
+        "effective_efficiency": 0.731
+      },
+      {
+        "night": "2015-01-26",
+        "score": 72.3,
+        "effective_efficiency": 0.556
+      },
+      {
+        "night": "2015-01-27",
+        "score": 76.7,
+        "effective_efficiency": 0.657
+      },
+      {
+        "night": "2015-01-28",
+        "score": 69.2,
+        "effective_efficiency": 0.528
+      },
+      {
+        "night": "2015-01-29",
+        "score": 83.4,
+        "effective_efficiency": 0.733
+      },
+      {
+        "night": "2015-01-30",
+        "score": 59.3,
+        "effective_efficiency": 0.257
+      },
+      {
+        "night": "2015-01-31",
+        "score": 61.1,
+        "effective_efficiency": 0.304
+      },
+      {
+        "night": "2015-02-07",
+        "score": 62.0,
+        "effective_efficiency": 0.392
+      },
+      {
+        "night": "2015-02-08",
+        "score": 79.6,
+        "effective_efficiency": 0.717
+      },
+      {
+        "night": "2015-02-09",
+        "score": 64.4,
+        "effective_efficiency": 0.455
+      },
+      {
+        "night": "2015-02-10",
+        "score": 66.3,
+        "effective_efficiency": 0.423
+      },
+      {
+        "night": "2015-02-11",
+        "score": 65.7,
+        "effective_efficiency": 0.452
+      },
+      {
+        "night": "2015-02-12",
+        "score": 54.5,
+        "effective_efficiency": 0.224
+      },
+      {
+        "night": "2015-02-13",
+        "score": 60.4,
+        "effective_efficiency": 0.328
+      },
+      {
+        "night": "2015-02-14",
+        "score": 71.5,
+        "effective_efficiency": 0.54
+      },
+      {
+        "night": "2015-02-15",
+        "score": 72.4,
+        "effective_efficiency": 0.571
+      },
+      {
+        "night": "2015-08-14",
+        "score": 67.5,
+        "effective_efficiency": 0.41
+      },
+      {
+        "night": "2015-08-15",
+        "score": 28.0,
+        "effective_efficiency": 0.035
+      },
+      {
+        "night": "2015-08-16",
+        "score": 58.1,
+        "effective_efficiency": 0.281
+      },
+      {
+        "night": "2015-08-17",
+        "score": 60.4,
+        "effective_efficiency": 0.259
+      },
+      {
+        "night": "2015-08-18",
+        "score": 59.1,
+        "effective_efficiency": 0.229
+      },
+      {
+        "night": "2015-08-20",
+        "score": 54.4,
+        "effective_efficiency": 0.198
+      },
+      {
+        "night": "2015-08-21",
+        "score": 41.7,
+        "effective_efficiency": 0.117
+      },
+      {
+        "night": "2015-08-22",
+        "score": 58.0,
+        "effective_efficiency": 0.21
+      },
+      {
+        "night": "2015-08-23",
+        "score": 79.4,
+        "effective_efficiency": 0.625
+      },
+      {
+        "night": "2015-09-01",
+        "score": 97.8,
+        "effective_efficiency": 1.074
+      },
+      {
+        "night": "2015-09-03",
+        "score": 74.8,
+        "effective_efficiency": 0.549
+      },
+      {
+        "night": "2015-09-07",
+        "score": 42.8,
+        "effective_efficiency": 0.148
+      },
+      {
+        "night": "2015-09-10",
+        "score": 54.6,
+        "effective_efficiency": 0.164
+      },
+      {
+        "night": "2015-09-11",
+        "score": 49.8,
+        "effective_efficiency": 0.072
+      },
+      {
+        "night": "2015-09-12",
+        "score": 72.7,
+        "effective_efficiency": 0.493
+      },
+      {
+        "night": "2015-09-15",
+        "score": 23.3,
+        "effective_efficiency": 0.019
+      },
+      {
+        "night": "2015-09-17",
+        "score": 46.9,
+        "effective_efficiency": 0.147
+      },
+      {
+        "night": "2015-09-18",
+        "score": 35.5,
+        "effective_efficiency": 0.032
+      },
+      {
+        "night": "2015-09-20",
+        "score": 32.5,
+        "effective_efficiency": 0.039
+      },
+      {
+        "night": "2015-09-21",
+        "score": 49.4,
+        "effective_efficiency": 0.058
+      },
+      {
+        "night": "2015-09-22",
+        "score": 63.9,
+        "effective_efficiency": 0.297
+      },
+      {
+        "night": "2015-09-25",
+        "score": 52.9,
+        "effective_efficiency": 0.195
+      },
+      {
+        "night": "2015-09-28",
+        "score": 53.0,
+        "effective_efficiency": 0.102
+      },
+      {
+        "night": "2015-09-30",
+        "score": 36.1,
+        "effective_efficiency": 0.146
+      },
+      {
+        "night": "2015-10-01",
+        "score": 31.3,
+        "effective_efficiency": 0.058
+      },
+      {
+        "night": "2015-10-03",
+        "score": 34.7,
+        "effective_efficiency": 0.116
+      },
+      {
+        "night": "2015-10-04",
+        "score": 26.6,
+        "effective_efficiency": 0.047
+      },
+      {
+        "night": "2015-10-05",
+        "score": 34.1,
+        "effective_efficiency": 0.075
+      },
+      {
+        "night": "2015-10-06",
+        "score": 47.3,
+        "effective_efficiency": 0.184
+      },
+      {
+        "night": "2015-10-07",
+        "score": 37.8,
+        "effective_efficiency": 0.101
+      },
+      {
+        "night": "2015-10-08",
+        "score": 34.6,
+        "effective_efficiency": 0.051
+      },
+      {
+        "night": "2015-10-09",
+        "score": 29.1,
+        "effective_efficiency": 0.028
+      },
+      {
+        "night": "2015-10-15",
+        "score": 51.1,
+        "effective_efficiency": 0.09
+      },
+      {
+        "night": "2015-10-16",
+        "score": 63.4,
+        "effective_efficiency": 0.344
+      },
+      {
+        "night": "2015-10-17",
+        "score": 53.4,
+        "effective_efficiency": 0.221
+      },
+      {
+        "night": "2015-10-20",
+        "score": 41.6,
+        "effective_efficiency": 0.139
+      },
+      {
+        "night": "2015-10-21",
+        "score": 51.3,
+        "effective_efficiency": 0.257
+      },
+      {
+        "night": "2015-10-22",
+        "score": 51.1,
+        "effective_efficiency": 0.175
+      },
+      {
+        "night": "2015-10-23",
+        "score": 34.1,
+        "effective_efficiency": 0.05
+      },
+      {
+        "night": "2015-10-29",
+        "score": 68.4,
+        "effective_efficiency": 0.41
+      },
+      {
+        "night": "2015-10-31",
+        "score": 60.2,
+        "effective_efficiency": 0.291
+      },
+      {
+        "night": "2015-11-01",
+        "score": 34.9,
+        "effective_efficiency": 0.082
+      },
+      {
+        "night": "2015-11-02",
+        "score": 40.5,
+        "effective_efficiency": 0.085
+      },
+      {
+        "night": "2015-11-04",
+        "score": 54.0,
+        "effective_efficiency": 0.183
+      },
+      {
+        "night": "2015-11-05",
+        "score": 72.5,
+        "effective_efficiency": 0.536
+      },
+      {
+        "night": "2015-11-06",
+        "score": 74.3,
+        "effective_efficiency": 0.584
+      },
+      {
+        "night": "2015-11-07",
+        "score": 74.7,
+        "effective_efficiency": 0.573
+      },
+      {
+        "night": "2015-11-12",
+        "score": 63.9,
+        "effective_efficiency": 0.364
+      },
+      {
+        "night": "2015-11-13",
+        "score": 71.6,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2015-11-14",
+        "score": 70.5,
+        "effective_efficiency": 0.538
+      },
+      {
+        "night": "2015-11-15",
+        "score": 49.0,
+        "effective_efficiency": 0.282
+      },
+      {
+        "night": "2015-11-17",
+        "score": 58.5,
+        "effective_efficiency": 0.339
+      },
+      {
+        "night": "2015-11-18",
+        "score": 46.8,
+        "effective_efficiency": 0.056
+      },
+      {
+        "night": "2015-11-19",
+        "score": 73.7,
+        "effective_efficiency": 0.583
+      },
+      {
+        "night": "2015-11-20",
+        "score": 50.0,
+        "effective_efficiency": 0.218
+      },
+      {
+        "night": "2015-11-21",
+        "score": 56.7,
+        "effective_efficiency": 0.236
+      },
+      {
+        "night": "2015-11-22",
+        "score": 33.2,
+        "effective_efficiency": 0.037
+      },
+      {
+        "night": "2015-11-28",
+        "score": 62.8,
+        "effective_efficiency": 0.393
+      },
+      {
+        "night": "2015-11-29",
+        "score": 64.5,
+        "effective_efficiency": 0.426
+      },
+      {
+        "night": "2015-11-30",
+        "score": 68.5,
+        "effective_efficiency": 0.453
+      },
+      {
+        "night": "2015-12-02",
+        "score": 33.7,
+        "effective_efficiency": 0.092
+      },
+      {
+        "night": "2015-12-03",
+        "score": 54.6,
+        "effective_efficiency": 0.332
+      },
+      {
+        "night": "2015-12-04",
+        "score": 71.9,
+        "effective_efficiency": 0.53
+      },
+      {
+        "night": "2015-12-08",
+        "score": 57.1,
+        "effective_efficiency": 0.466
+      },
+      {
+        "night": "2015-12-09",
+        "score": 69.8,
+        "effective_efficiency": 0.502
+      },
+      {
+        "night": "2015-12-10",
+        "score": 65.0,
+        "effective_efficiency": 0.393
+      },
+      {
+        "night": "2015-12-13",
+        "score": 79.1,
+        "effective_efficiency": 0.719
+      },
+      {
+        "night": "2015-12-14",
+        "score": 64.1,
+        "effective_efficiency": 0.398
+      },
+      {
+        "night": "2015-12-15",
+        "score": 44.8,
+        "effective_efficiency": 0.251
+      },
+      {
+        "night": "2015-12-16",
+        "score": 74.5,
+        "effective_efficiency": 0.625
+      },
+      {
+        "night": "2015-12-17",
+        "score": 64.2,
+        "effective_efficiency": 0.427
+      },
+      {
+        "night": "2015-12-18",
+        "score": 42.7,
+        "effective_efficiency": 0.155
+      },
+      {
+        "night": "2015-12-19",
+        "score": 57.3,
+        "effective_efficiency": 0.267
+      },
+      {
+        "night": "2015-12-20",
+        "score": 63.1,
+        "effective_efficiency": 0.311
+      },
+      {
+        "night": "2015-12-31",
+        "score": 41.2,
+        "effective_efficiency": 0.144
+      },
+      {
+        "night": "2016-01-01",
+        "score": 50.7,
+        "effective_efficiency": 0.096
+      },
+      {
+        "night": "2016-01-02",
+        "score": 66.9,
+        "effective_efficiency": 0.474
+      },
+      {
+        "night": "2016-01-03",
+        "score": 53.9,
+        "effective_efficiency": 0.327
+      },
+      {
+        "night": "2016-01-08",
+        "score": 67.7,
+        "effective_efficiency": 0.496
+      },
+      {
+        "night": "2016-01-09",
+        "score": 64.9,
+        "effective_efficiency": 0.392
+      },
+      {
+        "night": "2016-01-10",
+        "score": 70.5,
+        "effective_efficiency": 0.513
+      },
+      {
+        "night": "2016-01-11",
+        "score": 69.0,
+        "effective_efficiency": 0.502
+      },
+      {
+        "night": "2016-01-12",
+        "score": 61.4,
+        "effective_efficiency": 0.352
+      },
+      {
+        "night": "2016-01-13",
+        "score": 83.9,
+        "effective_efficiency": 0.809
+      },
+      {
+        "night": "2016-01-14",
+        "score": 84.6,
+        "effective_efficiency": 0.833
+      },
+      {
+        "night": "2016-01-15",
+        "score": 74.7,
+        "effective_efficiency": 0.641
+      },
+      {
+        "night": "2016-01-16",
+        "score": 68.2,
+        "effective_efficiency": 0.498
+      },
+      {
+        "night": "2016-01-17",
+        "score": 61.9,
+        "effective_efficiency": 0.352
+      },
+      {
+        "night": "2016-01-19",
+        "score": 67.3,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2016-01-20",
+        "score": 50.7,
+        "effective_efficiency": 0.167
+      },
+      {
+        "night": "2016-02-04",
+        "score": 72.9,
+        "effective_efficiency": 0.568
+      },
+      {
+        "night": "2016-02-05",
+        "score": 72.4,
+        "effective_efficiency": 0.566
+      },
+      {
+        "night": "2016-02-06",
+        "score": 60.6,
+        "effective_efficiency": 0.307
+      },
+      {
+        "night": "2016-02-07",
+        "score": 56.3,
+        "effective_efficiency": 0.224
+      },
+      {
+        "night": "2016-02-08",
+        "score": 56.8,
+        "effective_efficiency": 0.251
+      },
+      {
+        "night": "2016-02-09",
+        "score": 73.8,
+        "effective_efficiency": 0.601
+      },
+      {
+        "night": "2016-02-10",
+        "score": 71.8,
+        "effective_efficiency": 0.556
+      },
+      {
+        "night": "2016-02-11",
+        "score": 31.1,
+        "effective_efficiency": 0.136
+      },
+      {
+        "night": "2016-02-12",
+        "score": 60.1,
+        "effective_efficiency": 0.411
+      },
+      {
+        "night": "2016-08-13",
+        "score": 56.5,
+        "effective_efficiency": 0.208
+      },
+      {
+        "night": "2016-08-14",
+        "score": 51.8,
+        "effective_efficiency": 0.175
+      },
+      {
+        "night": "2016-08-15",
+        "score": 66.6,
+        "effective_efficiency": 0.424
+      },
+      {
+        "night": "2016-08-22",
+        "score": 55.3,
+        "effective_efficiency": 0.182
+      },
+      {
+        "night": "2016-08-23",
+        "score": 52.7,
+        "effective_efficiency": 0.121
+      },
+      {
+        "night": "2016-08-24",
+        "score": 52.2,
+        "effective_efficiency": 0.15
+      },
+      {
+        "night": "2016-08-25",
+        "score": 64.5,
+        "effective_efficiency": 0.375
+      },
+      {
+        "night": "2016-08-28",
+        "score": 73.5,
+        "effective_efficiency": 0.5
+      },
+      {
+        "night": "2016-08-29",
+        "score": 73.1,
+        "effective_efficiency": 0.532
+      },
+      {
+        "night": "2016-08-30",
+        "score": 65.2,
+        "effective_efficiency": 0.383
+      },
+      {
+        "night": "2016-08-31",
+        "score": 79.6,
+        "effective_efficiency": 0.667
+      },
+      {
+        "night": "2016-09-02",
+        "score": 53.1,
+        "effective_efficiency": 0.21
+      },
+      {
+        "night": "2016-09-03",
+        "score": 35.6,
+        "effective_efficiency": 0.117
+      },
+      {
+        "night": "2016-09-04",
+        "score": 46.2,
+        "effective_efficiency": 0.141
+      },
+      {
+        "night": "2016-09-05",
+        "score": 49.1,
+        "effective_efficiency": 0.114
+      },
+      {
+        "night": "2016-09-06",
+        "score": 57.0,
+        "effective_efficiency": 0.298
+      },
+      {
+        "night": "2016-09-07",
+        "score": 70.0,
+        "effective_efficiency": 0.487
+      },
+      {
+        "night": "2016-09-08",
+        "score": 74.1,
+        "effective_efficiency": 0.587
+      },
+      {
+        "night": "2016-09-09",
+        "score": 59.1,
+        "effective_efficiency": 0.319
+      },
+      {
+        "night": "2016-09-10",
+        "score": 56.6,
+        "effective_efficiency": 0.25
+      },
+      {
+        "night": "2016-09-11",
+        "score": 45.7,
+        "effective_efficiency": 0.122
+      },
+      {
+        "night": "2016-09-12",
+        "score": 29.9,
+        "effective_efficiency": 0.059
+      },
+      {
+        "night": "2016-09-13",
+        "score": 32.0,
+        "effective_efficiency": 0.038
+      },
+      {
+        "night": "2016-09-14",
+        "score": 20.8,
+        "effective_efficiency": 0.013
+      },
+      {
+        "night": "2016-09-21",
+        "score": 55.2,
+        "effective_efficiency": 0.208
+      },
+      {
+        "night": "2016-09-22",
+        "score": 70.4,
+        "effective_efficiency": 0.464
+      },
+      {
+        "night": "2016-09-23",
+        "score": 73.2,
+        "effective_efficiency": 0.505
+      },
+      {
+        "night": "2016-09-24",
+        "score": 74.7,
+        "effective_efficiency": 0.549
+      },
+      {
+        "night": "2016-09-25",
+        "score": 70.6,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2016-09-26",
+        "score": 76.9,
+        "effective_efficiency": 0.602
+      },
+      {
+        "night": "2016-09-27",
+        "score": 70.4,
+        "effective_efficiency": 0.486
+      },
+      {
+        "night": "2016-09-28",
+        "score": 56.1,
+        "effective_efficiency": 0.209
+      },
+      {
+        "night": "2016-09-29",
+        "score": 72.4,
+        "effective_efficiency": 0.523
+      },
+      {
+        "night": "2016-09-30",
+        "score": 71.4,
+        "effective_efficiency": 0.49
+      },
+      {
+        "night": "2016-10-01",
+        "score": 77.2,
+        "effective_efficiency": 0.582
+      },
+      {
+        "night": "2016-10-02",
+        "score": 64.1,
+        "effective_efficiency": 0.365
+      },
+      {
+        "night": "2016-10-03",
+        "score": 26.1,
+        "effective_efficiency": 0.049
+      },
+      {
+        "night": "2016-10-04",
+        "score": 65.0,
+        "effective_efficiency": 0.386
+      },
+      {
+        "night": "2016-10-05",
+        "score": 67.8,
+        "effective_efficiency": 0.469
+      },
+      {
+        "night": "2016-10-06",
+        "score": 55.0,
+        "effective_efficiency": 0.248
+      },
+      {
+        "night": "2016-10-07",
+        "score": 60.5,
+        "effective_efficiency": 0.275
+      },
+      {
+        "night": "2016-10-08",
+        "score": 57.3,
+        "effective_efficiency": 0.253
+      },
+      {
+        "night": "2016-10-09",
+        "score": 45.9,
+        "effective_efficiency": 0.146
+      },
+      {
+        "night": "2016-10-10",
+        "score": 36.9,
+        "effective_efficiency": 0.126
+      },
+      {
+        "night": "2016-10-11",
+        "score": 73.3,
+        "effective_efficiency": 0.576
+      },
+      {
+        "night": "2016-10-18",
+        "score": 41.1,
+        "effective_efficiency": 0.137
+      },
+      {
+        "night": "2016-10-19",
+        "score": 42.8,
+        "effective_efficiency": 0.066
+      },
+      {
+        "night": "2016-10-20",
+        "score": 52.2,
+        "effective_efficiency": 0.198
+      },
+      {
+        "night": "2016-10-21",
+        "score": 55.4,
+        "effective_efficiency": 0.245
+      },
+      {
+        "night": "2016-10-22",
+        "score": 46.9,
+        "effective_efficiency": 0.155
+      },
+      {
+        "night": "2016-10-24",
+        "score": 38.6,
+        "effective_efficiency": 0.089
+      },
+      {
+        "night": "2016-10-25",
+        "score": 44.0,
+        "effective_efficiency": 0.151
+      },
+      {
+        "night": "2016-10-26",
+        "score": 69.4,
+        "effective_efficiency": 0.455
+      },
+      {
+        "night": "2016-10-27",
+        "score": 80.1,
+        "effective_efficiency": 0.692
+      },
+      {
+        "night": "2016-10-28",
+        "score": 75.6,
+        "effective_efficiency": 0.607
+      },
+      {
+        "night": "2016-11-02",
+        "score": 61.9,
+        "effective_efficiency": 0.312
+      },
+      {
+        "night": "2016-11-03",
+        "score": 76.4,
+        "effective_efficiency": 0.612
+      },
+      {
+        "night": "2016-11-04",
+        "score": 76.2,
+        "effective_efficiency": 0.624
+      },
+      {
+        "night": "2016-11-05",
+        "score": 79.1,
+        "effective_efficiency": 0.704
+      },
+      {
+        "night": "2016-11-06",
+        "score": 66.5,
+        "effective_efficiency": 0.419
+      },
+      {
+        "night": "2016-11-07",
+        "score": 69.4,
+        "effective_efficiency": 0.497
+      },
+      {
+        "night": "2016-11-08",
+        "score": 71.2,
+        "effective_efficiency": 0.564
+      },
+      {
+        "night": "2016-11-09",
+        "score": 61.0,
+        "effective_efficiency": 0.356
+      },
+      {
+        "night": "2016-11-10",
+        "score": 64.7,
+        "effective_efficiency": 0.407
+      },
+      {
+        "night": "2016-11-15",
+        "score": 57.3,
+        "effective_efficiency": 0.283
+      },
+      {
+        "night": "2016-11-16",
+        "score": 58.5,
+        "effective_efficiency": 0.244
+      },
+      {
+        "night": "2016-11-17",
+        "score": 66.2,
+        "effective_efficiency": 0.429
+      },
+      {
+        "night": "2016-11-18",
+        "score": 49.4,
+        "effective_efficiency": 0.238
+      },
+      {
+        "night": "2016-11-21",
+        "score": 50.3,
+        "effective_efficiency": 0.081
+      },
+      {
+        "night": "2016-11-22",
+        "score": 24.9,
+        "effective_efficiency": 0.069
+      },
+      {
+        "night": "2016-11-23",
+        "score": 30.8,
+        "effective_efficiency": 0.114
+      },
+      {
+        "night": "2016-11-24",
+        "score": 67.9,
+        "effective_efficiency": 0.448
+      },
+      {
+        "night": "2016-11-25",
+        "score": 60.9,
+        "effective_efficiency": 0.316
+      },
+      {
+        "night": "2016-11-26",
+        "score": 70.2,
+        "effective_efficiency": 0.53
+      },
+      {
+        "night": "2016-11-27",
+        "score": 65.9,
+        "effective_efficiency": 0.397
+      },
+      {
+        "night": "2016-11-28",
+        "score": 63.2,
+        "effective_efficiency": 0.343
+      },
+      {
+        "night": "2016-11-29",
+        "score": 63.9,
+        "effective_efficiency": 0.394
+      },
+      {
+        "night": "2016-12-01",
+        "score": 90.9,
+        "effective_efficiency": 0.858
+      },
+      {
+        "night": "2016-12-02",
+        "score": 66.9,
+        "effective_efficiency": 0.415
+      },
+      {
+        "night": "2016-12-03",
+        "score": 76.7,
+        "effective_efficiency": 0.67
+      },
+      {
+        "night": "2016-12-04",
+        "score": 73.5,
+        "effective_efficiency": 0.602
+      },
+      {
+        "night": "2016-12-05",
+        "score": 76.9,
+        "effective_efficiency": 0.669
+      },
+      {
+        "night": "2016-12-06",
+        "score": 72.5,
+        "effective_efficiency": 0.58
+      },
+      {
+        "night": "2016-12-07",
+        "score": 48.7,
+        "effective_efficiency": 0.217
+      },
+      {
+        "night": "2016-12-17",
+        "score": 73.9,
+        "effective_efficiency": 0.623
+      },
+      {
+        "night": "2016-12-18",
+        "score": 74.3,
+        "effective_efficiency": 0.622
+      },
+      {
+        "night": "2016-12-19",
+        "score": 85.4,
+        "effective_efficiency": 0.85
+      },
+      {
+        "night": "2016-12-20",
+        "score": 78.5,
+        "effective_efficiency": 0.672
+      },
+      {
+        "night": "2016-12-21",
+        "score": 57.1,
+        "effective_efficiency": 0.386
+      },
+      {
+        "night": "2016-12-22",
+        "score": 73.1,
+        "effective_efficiency": 0.627
+      },
+      {
+        "night": "2016-12-23",
+        "score": 85.1,
+        "effective_efficiency": 0.836
+      },
+      {
+        "night": "2016-12-24",
+        "score": 72.0,
+        "effective_efficiency": 0.578
+      },
+      {
+        "night": "2016-12-29",
+        "score": 59.3,
+        "effective_efficiency": 0.253
+      },
+      {
+        "night": "2016-12-30",
+        "score": 74.9,
+        "effective_efficiency": 0.611
+      },
+      {
+        "night": "2017-01-03",
+        "score": 53.8,
+        "effective_efficiency": 0.167
+      },
+      {
+        "night": "2017-01-06",
+        "score": 64.3,
+        "effective_efficiency": 0.421
+      },
+      {
+        "night": "2017-01-07",
+        "score": 51.4,
+        "effective_efficiency": 0.173
+      },
+      {
+        "night": "2017-01-09",
+        "score": 78.2,
+        "effective_efficiency": 0.705
+      },
+      {
+        "night": "2017-01-16",
+        "score": 72.3,
+        "effective_efficiency": 0.582
+      },
+      {
+        "night": "2017-01-17",
+        "score": 77.2,
+        "effective_efficiency": 0.688
+      },
+      {
+        "night": "2017-01-18",
+        "score": 68.4,
+        "effective_efficiency": 0.515
+      },
+      {
+        "night": "2017-01-19",
+        "score": 84.3,
+        "effective_efficiency": 0.796
+      },
+      {
+        "night": "2017-01-20",
+        "score": 61.8,
+        "effective_efficiency": 0.336
+      },
+      {
+        "night": "2017-01-21",
+        "score": 69.9,
+        "effective_efficiency": 0.493
+      },
+      {
+        "night": "2017-01-24",
+        "score": 75.2,
+        "effective_efficiency": 0.574
+      },
+      {
+        "night": "2017-01-25",
+        "score": 60.9,
+        "effective_efficiency": 0.307
+      },
+      {
+        "night": "2017-01-26",
+        "score": 61.7,
+        "effective_efficiency": 0.343
+      },
+      {
+        "night": "2017-01-27",
+        "score": 66.8,
+        "effective_efficiency": 0.422
+      },
+      {
+        "night": "2017-01-28",
+        "score": 54.2,
+        "effective_efficiency": 0.185
+      },
+      {
+        "night": "2017-01-29",
+        "score": 83.4,
+        "effective_efficiency": 0.811
+      },
+      {
+        "night": "2017-01-30",
+        "score": 59.9,
+        "effective_efficiency": 0.287
+      },
+      {
+        "night": "2017-01-31",
+        "score": 91.1,
+        "effective_efficiency": 0.96
+      },
+      {
+        "night": "2017-02-01",
+        "score": 81.2,
+        "effective_efficiency": 0.768
+      },
+      {
+        "night": "2017-02-02",
+        "score": 87.2,
+        "effective_efficiency": 0.89
+      },
+      {
+        "night": "2017-02-04",
+        "score": 59.9,
+        "effective_efficiency": 0.311
+      },
+      {
+        "night": "2017-02-05",
+        "score": 70.8,
+        "effective_efficiency": 0.524
+      },
+      {
+        "night": "2017-02-06",
+        "score": 75.4,
+        "effective_efficiency": 0.649
+      },
+      {
+        "night": "2017-02-07",
+        "score": 78.2,
+        "effective_efficiency": 0.684
+      },
+      {
+        "night": "2017-02-08",
+        "score": 66.1,
+        "effective_efficiency": 0.468
+      },
+      {
+        "night": "2017-02-15",
+        "score": 64.6,
+        "effective_efficiency": 0.419
+      },
+      {
+        "night": "2017-02-16",
+        "score": 64.2,
+        "effective_efficiency": 0.415
+      },
+      {
+        "night": "2017-02-17",
+        "score": 70.2,
+        "effective_efficiency": 0.545
+      },
+      {
+        "night": "2017-02-18",
+        "score": 68.1,
+        "effective_efficiency": 0.502
+      },
+      {
+        "night": "2017-08-16",
+        "score": 60.7,
+        "effective_efficiency": 0.234
+      },
+      {
+        "night": "2017-08-17",
+        "score": 70.5,
+        "effective_efficiency": 0.501
+      },
+      {
+        "night": "2017-08-20",
+        "score": 61.7,
+        "effective_efficiency": 0.261
+      },
+      {
+        "night": "2017-08-21",
+        "score": 69.7,
+        "effective_efficiency": 0.498
+      },
+      {
+        "night": "2017-08-24",
+        "score": 53.2,
+        "effective_efficiency": 0.097
+      },
+      {
+        "night": "2017-08-25",
+        "score": 48.7,
+        "effective_efficiency": 0.127
+      },
+      {
+        "night": "2017-08-26",
+        "score": 61.8,
+        "effective_efficiency": 0.332
+      },
+      {
+        "night": "2017-08-27",
+        "score": 79.9,
+        "effective_efficiency": 0.698
+      },
+      {
+        "night": "2017-08-29",
+        "score": 26.7,
+        "effective_efficiency": 0.037
+      },
+      {
+        "night": "2017-08-30",
+        "score": 37.5,
+        "effective_efficiency": 0.081
+      },
+      {
+        "night": "2017-08-31",
+        "score": 32.1,
+        "effective_efficiency": 0.063
+      },
+      {
+        "night": "2017-09-01",
+        "score": 56.7,
+        "effective_efficiency": 0.224
+      },
+      {
+        "night": "2017-09-02",
+        "score": 32.0,
+        "effective_efficiency": 0.069
+      },
+      {
+        "night": "2017-09-06",
+        "score": 64.8,
+        "effective_efficiency": 0.34
+      },
+      {
+        "night": "2017-09-07",
+        "score": 63.9,
+        "effective_efficiency": 0.358
+      },
+      {
+        "night": "2017-09-10",
+        "score": 51.5,
+        "effective_efficiency": 0.146
+      },
+      {
+        "night": "2017-09-11",
+        "score": 52.8,
+        "effective_efficiency": 0.144
+      },
+      {
+        "night": "2017-09-12",
+        "score": 48.6,
+        "effective_efficiency": 0.115
+      },
+      {
+        "night": "2017-09-13",
+        "score": 71.3,
+        "effective_efficiency": 0.502
+      },
+      {
+        "night": "2017-09-17",
+        "score": 76.2,
+        "effective_efficiency": 0.613
+      },
+      {
+        "night": "2017-09-18",
+        "score": 42.0,
+        "effective_efficiency": 0.12
+      },
+      {
+        "night": "2017-09-22",
+        "score": 82.0,
+        "effective_efficiency": 0.669
+      },
+      {
+        "night": "2017-09-23",
+        "score": 78.9,
+        "effective_efficiency": 0.665
+      },
+      {
+        "night": "2017-09-24",
+        "score": 55.4,
+        "effective_efficiency": 0.274
+      },
+      {
+        "night": "2017-09-25",
+        "score": 80.4,
+        "effective_efficiency": 0.679
+      },
+      {
+        "night": "2017-09-26",
+        "score": 84.3,
+        "effective_efficiency": 0.779
+      },
+      {
+        "night": "2017-09-27",
+        "score": 45.8,
+        "effective_efficiency": 0.226
+      },
+      {
+        "night": "2017-09-28",
+        "score": 34.0,
+        "effective_efficiency": 0.087
+      },
+      {
+        "night": "2017-09-29",
+        "score": 33.1,
+        "effective_efficiency": 0.052
+      },
+      {
+        "night": "2017-10-01",
+        "score": 36.0,
+        "effective_efficiency": 0.086
+      },
+      {
+        "night": "2017-10-02",
+        "score": 60.3,
+        "effective_efficiency": 0.288
+      },
+      {
+        "night": "2017-10-03",
+        "score": 27.7,
+        "effective_efficiency": 0.052
+      },
+      {
+        "night": "2017-10-09",
+        "score": 50.0,
+        "effective_efficiency": 0.092
+      },
+      {
+        "night": "2017-10-10",
+        "score": 64.7,
+        "effective_efficiency": 0.385
+      },
+      {
+        "night": "2017-10-11",
+        "score": 34.6,
+        "effective_efficiency": 0.114
+      },
+      {
+        "night": "2017-10-12",
+        "score": 68.6,
+        "effective_efficiency": 0.451
+      },
+      {
+        "night": "2017-10-13",
+        "score": 41.4,
+        "effective_efficiency": 0.068
+      },
+      {
+        "night": "2017-10-14",
+        "score": 51.9,
+        "effective_efficiency": 0.249
+      },
+      {
+        "night": "2017-10-15",
+        "score": 49.9,
+        "effective_efficiency": 0.252
+      },
+      {
+        "night": "2017-10-16",
+        "score": 69.5,
+        "effective_efficiency": 0.497
+      },
+      {
+        "night": "2017-10-17",
+        "score": 53.9,
+        "effective_efficiency": 0.278
+      },
+      {
+        "night": "2017-10-18",
+        "score": 53.3,
+        "effective_efficiency": 0.171
+      },
+      {
+        "night": "2017-10-19",
+        "score": 72.6,
+        "effective_efficiency": 0.56
+      },
+      {
+        "night": "2017-10-20",
+        "score": 65.9,
+        "effective_efficiency": 0.383
+      },
+      {
+        "night": "2017-10-21",
+        "score": 78.3,
+        "effective_efficiency": 0.655
+      },
+      {
+        "night": "2017-10-25",
+        "score": 53.6,
+        "effective_efficiency": 0.182
+      },
+      {
+        "night": "2017-10-26",
+        "score": 68.6,
+        "effective_efficiency": 0.483
+      },
+      {
+        "night": "2017-10-27",
+        "score": 53.2,
+        "effective_efficiency": 0.31
+      },
+      {
+        "night": "2017-10-28",
+        "score": 76.2,
+        "effective_efficiency": 0.624
+      },
+      {
+        "night": "2017-10-29",
+        "score": 70.1,
+        "effective_efficiency": 0.478
+      },
+      {
+        "night": "2017-10-30",
+        "score": 46.2,
+        "effective_efficiency": 0.058
+      },
+      {
+        "night": "2017-10-31",
+        "score": 73.8,
+        "effective_efficiency": 0.56
+      },
+      {
+        "night": "2017-11-07",
+        "score": 52.7,
+        "effective_efficiency": 0.296
+      },
+      {
+        "night": "2017-11-08",
+        "score": 64.5,
+        "effective_efficiency": 0.465
+      },
+      {
+        "night": "2017-11-09",
+        "score": 67.7,
+        "effective_efficiency": 0.434
+      },
+      {
+        "night": "2017-11-13",
+        "score": 68.8,
+        "effective_efficiency": 0.47
+      },
+      {
+        "night": "2017-11-14",
+        "score": 65.1,
+        "effective_efficiency": 0.409
+      },
+      {
+        "night": "2017-11-15",
+        "score": 66.0,
+        "effective_efficiency": 0.424
+      },
+      {
+        "night": "2017-11-16",
+        "score": 67.1,
+        "effective_efficiency": 0.438
+      },
+      {
+        "night": "2017-11-17",
+        "score": 72.7,
+        "effective_efficiency": 0.556
+      },
+      {
+        "night": "2017-11-18",
+        "score": 57.4,
+        "effective_efficiency": 0.2
+      },
+      {
+        "night": "2017-11-19",
+        "score": 72.8,
+        "effective_efficiency": 0.58
+      },
+      {
+        "night": "2017-11-21",
+        "score": 73.9,
+        "effective_efficiency": 0.553
+      },
+      {
+        "night": "2017-11-22",
+        "score": 75.2,
+        "effective_efficiency": 0.604
+      },
+      {
+        "night": "2017-11-23",
+        "score": 74.3,
+        "effective_efficiency": 0.588
+      },
+      {
+        "night": "2017-11-24",
+        "score": 55.3,
+        "effective_efficiency": 0.21
+      },
+      {
+        "night": "2017-11-25",
+        "score": 79.6,
+        "effective_efficiency": 0.691
+      },
+      {
+        "night": "2017-11-26",
+        "score": 66.0,
+        "effective_efficiency": 0.387
+      },
+      {
+        "night": "2017-11-27",
+        "score": 63.5,
+        "effective_efficiency": 0.338
+      },
+      {
+        "night": "2017-11-28",
+        "score": 60.5,
+        "effective_efficiency": 0.303
+      },
+      {
+        "night": "2017-12-04",
+        "score": 64.0,
+        "effective_efficiency": 0.407
+      },
+      {
+        "night": "2017-12-05",
+        "score": 64.9,
+        "effective_efficiency": 0.375
+      },
+      {
+        "night": "2017-12-06",
+        "score": 68.8,
+        "effective_efficiency": 0.485
+      },
+      {
+        "night": "2017-12-07",
+        "score": 70.6,
+        "effective_efficiency": 0.523
+      },
+      {
+        "night": "2017-12-08",
+        "score": 71.1,
+        "effective_efficiency": 0.526
+      },
+      {
+        "night": "2017-12-09",
+        "score": 66.3,
+        "effective_efficiency": 0.424
+      },
+      {
+        "night": "2017-12-10",
+        "score": 83.4,
+        "effective_efficiency": 0.779
+      },
+      {
+        "night": "2017-12-11",
+        "score": 54.1,
+        "effective_efficiency": 0.267
+      },
+      {
+        "night": "2017-12-12",
+        "score": 24.9,
+        "effective_efficiency": 0.05
+      },
+      {
+        "night": "2017-12-13",
+        "score": 74.3,
+        "effective_efficiency": 0.565
+      },
+      {
+        "night": "2017-12-14",
+        "score": 83.2,
+        "effective_efficiency": 0.781
+      },
+      {
+        "night": "2017-12-21",
+        "score": 93.8,
+        "effective_efficiency": 0.992
+      },
+      {
+        "night": "2017-12-22",
+        "score": 72.8,
+        "effective_efficiency": 0.585
+      },
+      {
+        "night": "2017-12-23",
+        "score": 82.5,
+        "effective_efficiency": 0.773
+      },
+      {
+        "night": "2017-12-24",
+        "score": 83.3,
+        "effective_efficiency": 0.803
+      },
+      {
+        "night": "2017-12-25",
+        "score": 85.5,
+        "effective_efficiency": 0.853
+      },
+      {
+        "night": "2017-12-30",
+        "score": 63.0,
+        "effective_efficiency": 0.402
+      },
+      {
+        "night": "2018-01-03",
+        "score": 73.7,
+        "effective_efficiency": 0.618
+      },
+      {
+        "night": "2018-01-04",
+        "score": 80.9,
+        "effective_efficiency": 0.76
+      },
+      {
+        "night": "2018-01-06",
+        "score": 81.7,
+        "effective_efficiency": 0.764
+      },
+      {
+        "night": "2018-01-07",
+        "score": 44.9,
+        "effective_efficiency": 0.197
+      },
+      {
+        "night": "2018-01-08",
+        "score": 78.5,
+        "effective_efficiency": 0.713
+      },
+      {
+        "night": "2018-01-09",
+        "score": 86.8,
+        "effective_efficiency": 0.863
+      },
+      {
+        "night": "2018-01-10",
+        "score": 75.6,
+        "effective_efficiency": 0.578
+      },
+      {
+        "night": "2018-01-11",
+        "score": 24.6,
+        "effective_efficiency": 0.034
+      },
+      {
+        "night": "2018-01-13",
+        "score": 78.5,
+        "effective_efficiency": 0.717
+      },
+      {
+        "night": "2018-01-14",
+        "score": 70.6,
+        "effective_efficiency": 0.489
+      },
+      {
+        "night": "2018-01-15",
+        "score": 71.3,
+        "effective_efficiency": 0.552
+      },
+      {
+        "night": "2018-01-16",
+        "score": 74.3,
+        "effective_efficiency": 0.603
+      },
+      {
+        "night": "2018-01-17",
+        "score": 77.0,
+        "effective_efficiency": 0.684
+      },
+      {
+        "night": "2018-01-18",
+        "score": 78.2,
+        "effective_efficiency": 0.675
+      },
+      {
+        "night": "2018-01-19",
+        "score": 73.6,
+        "effective_efficiency": 0.588
+      },
+      {
+        "night": "2018-01-20",
+        "score": 77.2,
+        "effective_efficiency": 0.678
+      },
+      {
+        "night": "2018-01-21",
+        "score": 65.2,
+        "effective_efficiency": 0.404
+      },
+      {
+        "night": "2018-01-22",
+        "score": 76.5,
+        "effective_efficiency": 0.615
+      },
+      {
+        "night": "2018-01-23",
+        "score": 56.8,
+        "effective_efficiency": 0.273
+      },
+      {
+        "night": "2018-01-24",
+        "score": 66.5,
+        "effective_efficiency": 0.444
+      },
+      {
+        "night": "2018-01-25",
+        "score": 61.3,
+        "effective_efficiency": 0.41
+      },
+      {
+        "night": "2018-01-26",
+        "score": 65.5,
+        "effective_efficiency": 0.421
+      },
+      {
+        "night": "2018-01-27",
+        "score": 64.7,
+        "effective_efficiency": 0.426
+      },
+      {
+        "night": "2018-02-02",
+        "score": 63.2,
+        "effective_efficiency": 0.404
+      },
+      {
+        "night": "2018-02-03",
+        "score": 72.0,
+        "effective_efficiency": 0.585
+      },
+      {
+        "night": "2018-02-04",
+        "score": 61.9,
+        "effective_efficiency": 0.383
+      },
+      {
+        "night": "2018-02-05",
+        "score": 52.4,
+        "effective_efficiency": 0.303
+      },
+      {
+        "night": "2018-02-06",
+        "score": 75.0,
+        "effective_efficiency": 0.624
+      },
+      {
+        "night": "2018-02-07",
+        "score": 72.7,
+        "effective_efficiency": 0.587
+      },
+      {
+        "night": "2018-02-08",
+        "score": 80.9,
+        "effective_efficiency": 0.76
+      },
+      {
+        "night": "2018-02-09",
+        "score": 77.8,
+        "effective_efficiency": 0.696
+      },
+      {
+        "night": "2018-02-10",
+        "score": 79.7,
+        "effective_efficiency": 0.733
+      },
+      {
+        "night": "2018-02-11",
+        "score": 65.9,
+        "effective_efficiency": 0.429
+      },
+      {
+        "night": "2018-02-12",
+        "score": 75.7,
+        "effective_efficiency": 0.651
+      },
+      {
+        "night": "2018-02-13",
+        "score": 77.8,
+        "effective_efficiency": 0.666
+      },
+      {
+        "night": "2018-02-14",
+        "score": 77.7,
+        "effective_efficiency": 0.684
+      },
+      {
+        "night": "2018-02-17",
+        "score": 73.8,
+        "effective_efficiency": 0.589
+      },
+      {
+        "night": "2018-02-18",
+        "score": 87.6,
+        "effective_efficiency": 0.867
+      },
+      {
+        "night": "2018-02-19",
+        "score": 76.6,
+        "effective_efficiency": 0.631
+      },
+      {
+        "night": "2018-02-20",
+        "score": 90.0,
+        "effective_efficiency": 0.884
+      },
+      {
+        "night": "2018-02-21",
+        "score": 96.0,
+        "effective_efficiency": 1.054
+      },
+      {
+        "night": "2018-02-22",
+        "score": 85.0,
+        "effective_efficiency": 0.766
+      },
+      {
+        "night": "2018-09-08",
+        "score": 81.3,
+        "effective_efficiency": 0.712
+      },
+      {
+        "night": "2018-09-09",
+        "score": 76.4,
+        "effective_efficiency": 0.589
+      },
+      {
+        "night": "2018-09-10",
+        "score": 60.2,
+        "effective_efficiency": 0.308
+      },
+      {
+        "night": "2018-09-11",
+        "score": 19.2,
+        "effective_efficiency": 0.01
+      },
+      {
+        "night": "2018-09-12",
+        "score": 24.6,
+        "effective_efficiency": 0.03
+      },
+      {
+        "night": "2018-09-13",
+        "score": 71.5,
+        "effective_efficiency": 0.549
+      },
+      {
+        "night": "2018-09-14",
+        "score": 63.3,
+        "effective_efficiency": 0.375
+      },
+      {
+        "night": "2018-09-15",
+        "score": 63.9,
+        "effective_efficiency": 0.384
+      },
+      {
+        "night": "2018-09-16",
+        "score": 60.3,
+        "effective_efficiency": 0.445
+      },
+      {
+        "night": "2018-09-17",
+        "score": 42.2,
+        "effective_efficiency": 0.132
+      },
+      {
+        "night": "2018-09-18",
+        "score": 59.5,
+        "effective_efficiency": 0.351
+      },
+      {
+        "night": "2018-09-20",
+        "score": 68.5,
+        "effective_efficiency": 0.441
+      },
+      {
+        "night": "2018-09-21",
+        "score": 72.4,
+        "effective_efficiency": 0.52
+      },
+      {
+        "night": "2018-09-28",
+        "score": 39.8,
+        "effective_efficiency": 0.189
+      },
+      {
+        "night": "2018-09-30",
+        "score": 64.0,
+        "effective_efficiency": 0.415
+      },
+      {
+        "night": "2018-10-09",
+        "score": 46.4,
+        "effective_efficiency": 0.207
+      },
+      {
+        "night": "2018-10-17",
+        "score": 68.2,
+        "effective_efficiency": 0.442
+      },
+      {
+        "night": "2018-10-18",
+        "score": 59.3,
+        "effective_efficiency": 0.304
+      },
+      {
+        "night": "2018-10-19",
+        "score": 61.9,
+        "effective_efficiency": 0.334
+      },
+      {
+        "night": "2018-10-20",
+        "score": 70.0,
+        "effective_efficiency": 0.478
+      },
+      {
+        "night": "2018-10-21",
+        "score": 65.0,
+        "effective_efficiency": 0.375
+      },
+      {
+        "night": "2018-10-26",
+        "score": 52.7,
+        "effective_efficiency": 0.258
+      },
+      {
+        "night": "2018-10-27",
+        "score": 64.0,
+        "effective_efficiency": 0.42
+      },
+      {
+        "night": "2018-11-05",
+        "score": 74.6,
+        "effective_efficiency": 0.6
+      },
+      {
+        "night": "2018-11-06",
+        "score": 66.1,
+        "effective_efficiency": 0.422
+      },
+      {
+        "night": "2018-11-07",
+        "score": 68.7,
+        "effective_efficiency": 0.478
+      },
+      {
+        "night": "2018-11-08",
+        "score": 65.6,
+        "effective_efficiency": 0.409
+      },
+      {
+        "night": "2018-11-14",
+        "score": 72.0,
+        "effective_efficiency": 0.541
+      },
+      {
+        "night": "2018-11-15",
+        "score": 72.9,
+        "effective_efficiency": 0.552
+      },
+      {
+        "night": "2018-11-16",
+        "score": 69.1,
+        "effective_efficiency": 0.441
+      },
+      {
+        "night": "2018-11-17",
+        "score": 67.0,
+        "effective_efficiency": 0.411
+      },
+      {
+        "night": "2018-11-25",
+        "score": 82.4,
+        "effective_efficiency": 0.743
+      },
+      {
+        "night": "2018-11-26",
+        "score": 96.2,
+        "effective_efficiency": 1.128
+      },
+      {
+        "night": "2018-11-27",
+        "score": 92.7,
+        "effective_efficiency": 0.939
+      },
+      {
+        "night": "2018-11-28",
+        "score": 81.0,
+        "effective_efficiency": 0.719
+      },
+      {
+        "night": "2018-11-29",
+        "score": 87.7,
+        "effective_efficiency": 0.853
+      },
+      {
+        "night": "2018-11-30",
+        "score": 86.8,
+        "effective_efficiency": 0.851
+      },
+      {
+        "night": "2018-12-01",
+        "score": 80.2,
+        "effective_efficiency": 0.696
+      },
+      {
+        "night": "2018-12-02",
+        "score": 78.1,
+        "effective_efficiency": 0.645
+      },
+      {
+        "night": "2018-12-03",
+        "score": 49.5,
+        "effective_efficiency": 0.174
+      },
+      {
+        "night": "2018-12-04",
+        "score": 45.9,
+        "effective_efficiency": 0.072
+      },
+      {
+        "night": "2018-12-05",
+        "score": 56.1,
+        "effective_efficiency": 0.22
+      },
+      {
+        "night": "2018-12-06",
+        "score": 62.7,
+        "effective_efficiency": 0.335
+      },
+      {
+        "night": "2018-12-07",
+        "score": 54.6,
+        "effective_efficiency": 0.317
+      },
+      {
+        "night": "2018-12-08",
+        "score": 81.0,
+        "effective_efficiency": 0.728
+      },
+      {
+        "night": "2018-12-09",
+        "score": 75.0,
+        "effective_efficiency": 0.587
+      },
+      {
+        "night": "2018-12-10",
+        "score": 69.4,
+        "effective_efficiency": 0.486
+      },
+      {
+        "night": "2018-12-11",
+        "score": 73.9,
+        "effective_efficiency": 0.558
+      },
+      {
+        "night": "2018-12-12",
+        "score": 88.6,
+        "effective_efficiency": 0.855
+      },
+      {
+        "night": "2018-12-13",
+        "score": 76.7,
+        "effective_efficiency": 0.616
+      },
+      {
+        "night": "2018-12-14",
+        "score": 76.8,
+        "effective_efficiency": 0.647
+      },
+      {
+        "night": "2018-12-18",
+        "score": 32.3,
+        "effective_efficiency": 0.091
+      },
+      {
+        "night": "2018-12-19",
+        "score": 53.6,
+        "effective_efficiency": 0.226
+      },
+      {
+        "night": "2018-12-27",
+        "score": 62.5,
+        "effective_efficiency": 0.366
+      },
+      {
+        "night": "2018-12-28",
+        "score": 51.5,
+        "effective_efficiency": 0.159
+      },
+      {
+        "night": "2018-12-29",
+        "score": 54.2,
+        "effective_efficiency": 0.223
+      },
+      {
+        "night": "2018-12-30",
+        "score": 53.9,
+        "effective_efficiency": 0.224
+      },
+      {
+        "night": "2019-01-03",
+        "score": 82.1,
+        "effective_efficiency": 0.777
+      },
+      {
+        "night": "2019-01-05",
+        "score": 68.2,
+        "effective_efficiency": 0.479
+      },
+      {
+        "night": "2019-01-06",
+        "score": 77.1,
+        "effective_efficiency": 0.6
+      },
+      {
+        "night": "2019-01-07",
+        "score": 74.3,
+        "effective_efficiency": 0.555
+      },
+      {
+        "night": "2019-01-08",
+        "score": 98.3,
+        "effective_efficiency": 1.19
+      },
+      {
+        "night": "2019-01-09",
+        "score": 65.5,
+        "effective_efficiency": 0.433
+      }
+    ]
+  },
+  "figures": [
+    {
+      "file": "teff_validation.png",
+      "section": "validation",
+      "title": "Reconstructed vs pipeline t_eff",
+      "caption": "Our calibrated metric against DES's own quality pipeline across 74,323 exposures \u2014 log-correlation 0.952."
+    },
+    {
+      "file": "teff_terms.png",
+      "section": "validation",
+      "title": "The three factors of t_eff",
+      "caption": "Blur, cloud and sky terms as multipliers on exposure time."
+    },
+    {
+      "file": "fiducial_lambda.png",
+      "section": "validation",
+      "title": "Fiducials rediscover physics",
+      "caption": "The per-band fiducial FWHM fit on data follows the atmospheric wavelength^-0.2 law."
+    },
+    {
+      "file": "blur_by_band.png",
+      "section": "blur",
+      "title": "Delivered seeing by band",
+      "caption": "Blur distributions in each DECam filter; redder bands are sharper."
+    },
+    {
+      "file": "blur_airmass.png",
+      "section": "blur",
+      "title": "Scheduler selection bias (Simpson's paradox)",
+      "caption": "Pooled, blur seems to improve with airmass \u2014 because the scheduler pointed low only in good seeing. Holding the night fixed recovers the physical X^0.6 trend. Evaluating schedulers from logged data is confounded by the logging policy."
+    },
+    {
+      "file": "blur_skymap.png",
+      "section": "blur",
+      "title": "Seeing across the footprint",
+      "caption": "Median delivered FWHM over the DES footprint."
+    },
+    {
+      "file": "blur_decomposition.png",
+      "section": "blur",
+      "title": "Atmosphere vs scheduler",
+      "caption": "Zenith seeing (uncontrollable) vs delivered blur, and the t_eff fraction lost to pointing."
+    },
+    {
+      "file": "seeing_seasonality.png",
+      "section": "blur",
+      "title": "Seeing seasonality",
+      "caption": "Monthly zenith seeing: Chilean summer delivers sharper images."
+    },
+    {
+      "file": "night_scores.png",
+      "section": "schedule",
+      "title": "Every night, scored",
+      "caption": "Composite schedule score for each DES night with a 60-day rolling median."
+    },
+    {
+      "file": "efficiency_plane.png",
+      "section": "schedule",
+      "title": "The efficiency plane",
+      "caption": "Idle time vs poor conditions: two independent ways a night is lost."
+    },
+    {
+      "file": "best_worst_nights.png",
+      "section": "schedule",
+      "title": "Best and worst nights",
+      "caption": "Exposure-by-exposure t_eff through the highest- and lowest-scoring nights."
+    },
+    {
+      "file": "teff_thresholds.png",
+      "section": "schedule",
+      "title": "Keep-or-retake thresholds",
+      "caption": "Fraction of exposures meeting DES survey thresholds per band."
+    }
+  ],
+  "progress": [
+    {
+      "date": "2026-07-06",
+      "milestone": "t_eff physics identified from Terranova et al. + Neilsen et al. and mapped to the DES CSV columns",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "Empirical decomposition: blur x cloud core confirmed (log-corr 0.94), fiducials + sky term calibrated per band",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "skai_metrics package (data / teff / blur / schedule) + 4 validation tests passing on real data",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "Blur metric decomposed into atmosphere (uncontrollable) vs airmass (scheduler's choice)",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "Finding: scheduler selection bias inverts the blur-airmass law in pooled data (Simpson's paradox) \u2014 direct evidence that off-policy evaluation needs care",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "616 real DES nights scored with the composite schedule metric",
+      "status": "done"
+    },
+    {
+      "date": "2026-07-06",
+      "milestone": "Notebooks 01-03, LaTeX write-up, progress site",
+      "status": "in progress"
+    },
+    {
+      "date": "",
+      "milestone": "Review composite-score weights with mentors; apply metrics to the group's prototype AI scheduler output",
+      "status": "next"
+    },
+    {
+      "date": "",
+      "milestone": "Integrate into the group's shared software toolkit",
+      "status": "next"
+    }
+  ]
+};
