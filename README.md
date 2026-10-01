@@ -55,7 +55,7 @@ notebooks/      01 image quality · 02 blur metric · 03 schedule scoring · 04 
 scripts/        figure + dashboard data generation
 site/           the dashboard (GitHub Pages)
 paper/          LaTeX write-up and poster
-data/           des-exposures.csv (DES exposure metadata)
+data/           des-exposures.csv.gz (DES exposure metadata)
 ```
 
 ## Run it

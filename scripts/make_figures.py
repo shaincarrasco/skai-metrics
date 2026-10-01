@@ -336,7 +336,7 @@ summary = {
         "phase": "v0.1 — foundations: t_eff reconstructed, calibrated and validated; blur metric decomposed; per-night schedule scores on real DES nights",
     },
     "dataset": {
-        "source": "des-exposures.csv",
+        "source": "des-exposures.csv.gz",
         "n_rows_raw": 105889,
         "n_survey_90s_clean": int(len(f)),
         "n_nights_scored": int(len(nights)),

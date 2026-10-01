@@ -1,7 +1,7 @@
 """
 skai_metrics — evaluation metrics and rewards for AI-based telescope schedulers.
 
-Built and validated on 105,890 real DES exposures (des-exposures.csv).
+Built and validated on 105,890 real DES exposures (des-exposures.csv.gz).
 
 Modules
 -------

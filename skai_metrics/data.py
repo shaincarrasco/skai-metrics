@@ -6,16 +6,16 @@ import numpy as np
 import pandas as pd
 
 # Default location of the raw table relative to this repo
-DEFAULT_CSV = Path(__file__).resolve().parents[1] / "data" / "des-exposures.csv"
+DEFAULT_CSV = Path(__file__).resolve().parents[1] / "data" / "des-exposures.csv.gz"
 
 
 def load_exposures(path=None, survey_only=False, quality_cuts=True):
-    """Load des-exposures.csv with derived columns and optional cleaning.
+    """Load des-exposures.csv.gz with derived columns and optional cleaning.
 
     Parameters
     ----------
     path : str or Path, optional
-        Location of the CSV. Defaults to ``data/des-exposures.csv``.
+        Location of the CSV. Defaults to ``data/des-exposures.csv.gz``.
     survey_only : bool
         Keep only ``program == 'survey'`` 90 s wide-survey exposures
         (drops supernova fields, GW follow-up, engineering).

@@ -18,7 +18,7 @@ conditions (FWHM_fid seeing, photometric sky, dark sky). t_eff is therefore a
 *multiplier on time itself* — which is exactly why it works as a scheduler
 reward: maximizing sum(t_eff * tau) maximizes effective open-shutter time.
 
-Calibration on des-exposures.csv (constants fit on a 54,686-exposure subset,
+Calibration on des-exposures.csv.gz (constants fit on a 54,686-exposure subset,
 validated on the full 74,323 clean 90-s survey exposures):
 
   * blur and cloud terms reproduce the DES pipeline t_eff exactly in form
@@ -87,7 +87,7 @@ def sky_term(sky_excess, band="i"):
 def compute_teff(fwhm, cloud_mag=0.0, sky_excess=0.0, band="i"):
     """Calibrated t_eff from observing conditions.
 
-    Parameters mirror the des-exposures.csv columns
+    Parameters mirror the des-exposures.csv.gz columns
     (``qc_fwhm``, ``qc_cloud``, ``qc_sky``, ``filter``).
     """
     return (

@@ -17,7 +17,7 @@ GAL = '#e66767'
 SN = '#eda100'
 
 # ---- data: aggregate exposures into 0.5-deg pointing bins ----
-df = pd.read_csv(Path(__file__).resolve().parents[1] / 'data' / 'des-exposures.csv')
+df = pd.read_csv(Path(__file__).resolve().parents[1] / 'data' / 'des-exposures.csv.gz')
 df = df[pd.to_datetime(df['datetime'], errors='coerce').dt.year >= 2012]
 pts = (df.assign(ra_b=(df['ra'] * 2).round() / 2, dec_b=(df['dec'] * 2).round() / 2)
          .groupby(['ra_b', 'dec_b']).size().reset_index(name='cnt'))
